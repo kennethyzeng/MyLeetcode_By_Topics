@@ -1,0 +1,231 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 HelveticaNeue;\f2\fnil\fcharset0 HelveticaNeue-Italic;
+\f3\fnil\fcharset0 Menlo-Regular;\f4\fnil\fcharset0 HelveticaNeue-Bold;}
+{\colortbl;\red255\green255\blue255;\red51\green51\blue51;\red255\green255\blue255;\red151\green0\blue126;
+\red245\green247\blue249;\red29\green38\blue42;\red20\green0\blue196;\red73\green17\blue135;\red12\green90\blue1;
+\red51\green51\blue51;\red0\green0\blue0;\red196\green207\blue212;\red101\green125\blue138;\red24\green121\blue255;
+\red242\green242\blue242;\red140\green140\blue140;\red126\green147\blue158;\red175\green175\blue175;\red67\green91\blue103;
+}
+{\*\expandedcolortbl;;\cssrgb\c25882\c25882\c25882;\cssrgb\c100000\c100000\c100000;\cssrgb\c66667\c5098\c56863;
+\cssrgb\c96863\c97647\c98039;\cssrgb\c14902\c19608\c21961;\cssrgb\c10980\c0\c81176;\cssrgb\c36078\c14902\c60000;\cssrgb\c0\c41569\c0;
+\cssrgb\c25882\c25882\c25882;\cssrgb\c0\c0\c0\c65098;\cssrgb\c81176\c84706\c86275;\cssrgb\c47059\c56471\c61176;\cssrgb\c9412\c56471\c100000;
+\cssrgb\c96078\c96078\c96078;\cssrgb\c61961\c61961\c61961;\cssrgb\c56471\c64314\c68235;\cssrgb\c74118\c74118\c74118;\cssrgb\c32941\c43137\c47843;
+}
+\vieww12000\viewh15840\viewkind0
+\deftab720
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+
+\f0\fs22 \cf0 ###############################Link###########################################\
+https://leetcode.com/problems/longest-increasing-path-in-a-matrix/discuss/78334/Python-solution-memoization-dp-288ms\
+\
+\pard\pardeftab720\sl439\partightenfactor0
+
+\f1\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+time complexity is O(n
+\f2\i m) \
+ space also the O(n
+\f1\i0 m)
+\f0\fs22 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+\cf0 ################################Approach######################################\
+###############################Algorithms######################################\
+\
+################################Other###########################################\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f3\fs26 \cf4 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 longestIncreasingPath\cf6 \strokec6 (\cf8 \strokec8 self, matrix: List[List[int]]\cf6 \strokec6 ) -> int:\
+\
+    \cf9 \strokec9 # corner case\cf6 \strokec6 \
+    \cf4 \strokec4 if\cf6 \strokec6  \cf4 \strokec4 not\cf6 \strokec6  matrix \cf4 \strokec4 or\cf6 \strokec6  \cf4 \strokec4 not\cf6 \strokec6  matrix[\cf7 \strokec7 0\cf6 \strokec6 ]:\
+        \cf4 \strokec4 return\cf6 \strokec6  \cf7 \strokec7 0\cf6 \strokec6 \
+\
+    \cf9 \strokec9 # initilization\cf6 \strokec6 \
+    M, N = \cf8 \strokec8 len\cf6 \strokec6 (matrix), \cf8 \strokec8 len\cf6 \strokec6 (matrix[\cf7 \strokec7 0\cf6 \strokec6 ]) \cf9 \strokec9 # length, width\cf6 \strokec6 \
+    dp = [[\cf7 \strokec7 0\cf6 \strokec6 ]*N \cf4 \strokec4 for\cf6 \strokec6  i \cf4 \strokec4 in\cf6 \strokec6  \cf8 \strokec8 range\cf6 \strokec6 (M)] \cf9 \strokec9 # 2-D matrix for store the number of steps\cf6 \strokec6 \
+\
+    \cf9 \strokec9 # dfs function\cf6 \strokec6 \
+    \cf4 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 dfs\cf6 \strokec6 (\cf8 \strokec8 i, j\cf6 \strokec6 ):\
+        \cf4 \strokec4 if\cf6 \strokec6  \cf4 \strokec4 not\cf6 \strokec6  dp[i][j]: \cf9 \strokec9 # if this position is not visited\cf6 \strokec6 \
+            val = matrix[i][j]\
+            \cf9 \strokec9 # search four directions to find out the decreasing path\cf6 \strokec6 \
+            \cf9 \strokec9 # up\cf6 \strokec6 \
+            \cf4 \strokec4 if\cf6 \strokec6  i \cf4 \strokec4 and\cf6 \strokec6  val > matrix[i-\cf7 \strokec7 1\cf6 \strokec6 ][j]:\
+                up = dfs(i-\cf7 \strokec7 1\cf6 \strokec6 , j)\
+            \cf4 \strokec4 else\cf6 \strokec6 :\
+                up = \cf7 \strokec7 0\cf6 \strokec6 \
+            \cf9 \strokec9 # down\cf6 \strokec6 \
+            \cf4 \strokec4 if\cf6 \strokec6  i < M-\cf7 \strokec7 1\cf6 \strokec6  \cf4 \strokec4 and\cf6 \strokec6  val > matrix[i+\cf7 \strokec7 1\cf6 \strokec6 ][j]:\
+                down = dfs(i+\cf7 \strokec7 1\cf6 \strokec6 , j)\
+            \cf4 \strokec4 else\cf6 \strokec6 :\
+                down = \cf7 \strokec7 0\cf6 \strokec6 \
+            \cf9 \strokec9 # left\cf6 \strokec6 \
+            \cf4 \strokec4 if\cf6 \strokec6  j \cf4 \strokec4 and\cf6 \strokec6  val > matrix[i][j-\cf7 \strokec7 1\cf6 \strokec6 ]:\
+                left = dfs(i, j-\cf7 \strokec7 1\cf6 \strokec6 )\
+            \cf4 \strokec4 else\cf6 \strokec6 :\
+                left = \cf7 \strokec7 0\cf6 \strokec6 \
+            \cf9 \strokec9 # right\cf6 \strokec6 \
+            \cf4 \strokec4 if\cf6 \strokec6  j < N-\cf7 \strokec7 1\cf6 \strokec6  \cf4 \strokec4 and\cf6 \strokec6  val > matrix[i][j+\cf7 \strokec7 1\cf6 \strokec6 ]:\
+                right = dfs(i, j+\cf7 \strokec7 1\cf6 \strokec6 )\
+            \cf4 \strokec4 else\cf6 \strokec6 :\
+                right = \cf7 \strokec7 0\cf6 \strokec6 \
+            \cf9 \strokec9 # "walk" to the target neighbor and accumulate the number of steps\cf6 \strokec6 \
+            dp[i][j] = \cf7 \strokec7 1\cf6 \strokec6  + \cf8 \strokec8 max\cf6 \strokec6 (up, down, left, right)\
+        \cf4 \strokec4 return\cf6 \strokec6  dp[i][j]\
+\
+    res_path = []\
+    \cf4 \strokec4 for\cf6 \strokec6  x \cf4 \strokec4 in\cf6 \strokec6  \cf8 \strokec8 range\cf6 \strokec6 (M): \cf9 \strokec9 # search the grid by dfs\cf6 \strokec6 \
+        \cf4 \strokec4 for\cf6 \strokec6  y \cf4 \strokec4 in\cf6 \strokec6  \cf8 \strokec8 range\cf6 \strokec6 (N):\
+            res_path.append(dfs(x, y))\
+\
+    \cf4 \strokec4 return\cf6 \strokec6  \cf8 \strokec8 max\cf6 \strokec6 (res_path)\
+\pard\pardeftab720\sl439\partightenfactor0
+
+\f1\fs28 \cf10 \cb1 \strokec10 \
+\pard\pardeftab720\partightenfactor0
+\cf11 \strokec11 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs24 \cf12 \strokec12 \
+\pard\pardeftab720\partightenfactor0
+
+\f4\b \cf13 \cb3 \strokec13 20\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf12 \strokec12 \
+\pard\pardeftab720\sl240\partightenfactor0
+\cf13 \strokec13 \
+\pard\pardeftab720\sl240\partightenfactor0
+\cf13 \cb3 Show\'a03\'a0replies\cb1 \
+\
+\cb3 Reply\cb1 \
+\
+\cb3 Share\cb1 \
+\
+\cb3 Report\cb1 \
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://leetcode.com/agave"}}{\fldrslt 
+\fs28 \cf14 \cb15 \strokec14 }}\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf14 \strokec14 \
+\pard\pardeftab720\sl240\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://leetcode.com/agave"}}{\fldrslt 
+\fs24 \cf16 \cb3 \strokec16 agave}}
+\fs24 \cf10 \strokec10 \
+\pard\pardeftab720\sl240\partightenfactor0
+\cf17 \strokec17 \
+\pard\pardeftab720\sl240\partightenfactor0
+\cf17 \cb3 3032\
+\pard\pardeftab720\partightenfactor0
+\cf18 \strokec18 June 2, 2016 2:08 PM\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf19 \cb3 \strokec19 Read More\
+\pard\pardeftab720\sl439\partightenfactor0
+
+\fs28 \cf10 \strokec10 Why do you search for longest decreasing instead of longest increasing? What is the difference?\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf11 \strokec11 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs24 \cf12 \strokec12 \
+\pard\pardeftab720\partightenfactor0
+
+\f4\b \cf13 \cb3 \strokec13 15\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf12 \strokec12 \
+\pard\pardeftab720\sl240\partightenfactor0
+\cf13 \strokec13 \
+\pard\pardeftab720\sl240\partightenfactor0
+\cf13 \cb3 Show\'a02\'a0replies\cb1 \
+\
+\cb3 Reply\cb1 \
+\
+\cb3 Share\cb1 \
+\
+\cb3 Report\cb1 \
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://leetcode.com/getOffer0123"}}{\fldrslt 
+\fs28 \cf14 \cb15 \strokec14 }}\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf14 \strokec14 \
+\pard\pardeftab720\sl240\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://leetcode.com/getOffer0123"}}{\fldrslt 
+\fs24 \cf16 \cb3 \strokec16 getOffer0123}}
+\fs24 \cf10 \strokec10 \
+\pard\pardeftab720\sl240\partightenfactor0
+\cf17 \strokec17 \
+\pard\pardeftab720\sl240\partightenfactor0
+\cf17 \cb3 14\
+\pard\pardeftab720\partightenfactor0
+\cf18 \strokec18 January 20, 2019 3:13 PM\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf19 \cb3 \strokec19 Read More\
+\pard\pardeftab720\sl439\partightenfactor0
+
+\fs28 \cf10 \strokec10 so time complexity is O(n
+\f2\i m)? space also the O(n
+\f1\i0 m)? Anyone will correct me if I am wrong. Thanks!\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf11 \strokec11 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs24 \cf12 \strokec12 \
+\pard\pardeftab720\partightenfactor0
+
+\f4\b \cf13 \cb3 \strokec13 5\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf12 \strokec12 \
+\pard\pardeftab720\sl240\partightenfactor0
+\cf13 \strokec13 \
+\pard\pardeftab720\sl240\partightenfactor0
+\cf13 \cb3 Show\'a01\'a0reply\cb1 \
+\
+\cb3 Reply\cb1 \
+\
+\cb3 Share\cb1 \
+\
+\cb3 Report\cb1 \
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://leetcode.com/lenchen1112"}}{\fldrslt 
+\fs28 \cf14 \cb15 \strokec14 }}\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf14 \strokec14 \
+\pard\pardeftab720\sl240\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://leetcode.com/lenchen1112"}}{\fldrslt 
+\fs24 \cf16 \cb3 \strokec16 lenchen1112}}
+\fs24 \cf10 \strokec10 \
+\pard\pardeftab720\sl240\partightenfactor0
+\cf17 \strokec17 \
+\pard\pardeftab720\sl240\partightenfactor0
+\cf17 \cb3 3798\
+\pard\pardeftab720\partightenfactor0
+\cf18 \strokec18 January 14, 2020 9:09 PM\cb1 \
+\pard\pardeftab720\partightenfactor0
+\cf19 \cb3 \strokec19 Read More\
+\pard\pardeftab720\sl439\sa280\partightenfactor0
+
+\fs28 \cf10 \strokec10 Nice solution.\cb1 \uc0\u8232 \cb3 We can use lru_cache to make it cleaner.\cb1 \
+\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f3\fs26 \cf4 \cb5 \strokec4 import\cf6 \strokec6  functools\
+\cf4 \strokec4 class\cf6 \strokec6  \cf8 \strokec8 Solution\cf6 \strokec6 :\
+    \cf4 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 longestIncreasingPath\cf6 \strokec6 (\cf8 \strokec8 self, matrix: List[List[int]]\cf6 \strokec6 ) -> int:\
+\pard\pardeftab720\sl416\partightenfactor0
+\cf7 \strokec7         @functools.lru_cache(\cf4 \strokec4 None\cf7 \strokec7 )\cf6 \strokec6 \
+        \cf4 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 dfs\cf6 \strokec6 (\cf8 \strokec8 x, y\cf6 \strokec6 ):\
+            length = \cf7 \strokec7 1\cf6 \strokec6 \
+            \cf4 \strokec4 for\cf6 \strokec6  r, c \cf4 \strokec4 in\cf6 \strokec6  (x+\cf7 \strokec7 1\cf6 \strokec6 , y), (x-\cf7 \strokec7 1\cf6 \strokec6 , y), (x, y+\cf7 \strokec7 1\cf6 \strokec6 ), (x, y-\cf7 \strokec7 1\cf6 \strokec6 ):\
+                \cf4 \strokec4 if\cf6 \strokec6  \cf7 \strokec7 0\cf6 \strokec6  <= r < m \cf4 \strokec4 and\cf6 \strokec6  \cf7 \strokec7 0\cf6 \strokec6  <= c < n \cf4 \strokec4 and\cf6 \strokec6  matrix[x][y] < matrix[r][c]:\
+                    length = \cf8 \strokec8 max\cf6 \strokec6 (length, dfs(r, c) + \cf7 \strokec7 1\cf6 \strokec6 )\
+            \cf4 \strokec4 return\cf6 \strokec6  length\
+\
+        \cf4 \strokec4 if\cf6 \strokec6  \cf4 \strokec4 not\cf6 \strokec6  \cf8 \strokec8 any\cf6 \strokec6 (matrix): \cf4 \strokec4 return\cf6 \strokec6  \cf7 \strokec7 0\cf6 \strokec6 \
+        m, n = \cf8 \strokec8 len\cf6 \strokec6 (matrix), \cf8 \strokec8 len\cf6 \strokec6 (matrix[\cf7 \strokec7 0\cf6 \strokec6 ])\
+        \cf4 \strokec4 return\cf6 \strokec6  \cf8 \strokec8 max\cf6 \strokec6 (dfs(i, j) \cf4 \strokec4 for\cf6 \strokec6  i \cf4 \strokec4 in\cf6 \strokec6  \cf8 \strokec8 range\cf6 \strokec6 (m) \cf4 \strokec4 for\cf6 \strokec6  j \cf4 \strokec4 in\cf6 \strokec6  \cf8 \strokec8 range\cf6 \strokec6 (n))\
+}

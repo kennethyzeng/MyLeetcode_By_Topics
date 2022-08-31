@@ -1,0 +1,68 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red29\green38\blue42;\red245\green247\blue249;\red20\green0\blue196;
+\red73\green17\blue135;\red151\green0\blue126;\red12\green90\blue1;}
+{\*\expandedcolortbl;;\cssrgb\c14902\c19608\c21961;\cssrgb\c96863\c97647\c98039;\cssrgb\c10980\c0\c81176;
+\cssrgb\c36078\c14902\c60000;\cssrgb\c66667\c5098\c56863;\cssrgb\c0\c41569\c0;}
+\vieww12000\viewh15840\viewkind0
+\deftab720
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+
+\f0\fs22 \cf0 ###############################Link###########################################\
+https://www.youtube.com/watch?v=C0pOWEucp4M\
+################################Approach######################################\
+###############################Algorithms######################################\
+\
+################################Other###########################################\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f1\fs26 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 public List<List<Integer>> \cf4 \strokec4 pathSum\cf2 \strokec2 (\cf5 \strokec5 TreeNode root, int sum\cf2 \strokec2 ) \{\
+        List<List<Integer>> list = \cf6 \strokec6 new\cf2 \strokec2  ArrayList<>();\
+        \cf6 \strokec6 if\cf2 \strokec2  (root == \cf6 \strokec6 null\cf2 \strokec2 ) \cf6 \strokec6 return\cf2 \strokec2  list;\
+        List<Integer> path = \cf6 \strokec6 new\cf2 \strokec2  ArrayList<>();\
+        Stack<TreeNode> s = \cf6 \strokec6 new\cf2 \strokec2  Stack<>();\
+        \cf7 \strokec7 // sum along the current path\cf2 \strokec2 \
+        int pathSum = \cf4 \strokec4 0\cf2 \strokec2 ;\
+        TreeNode prev = \cf6 \strokec6 null\cf2 \strokec2 ;\
+        TreeNode curr = root;\
+        \cf6 \strokec6 while\cf2 \strokec2  (curr != \cf6 \strokec6 null\cf2 \strokec2  || !s.isEmpty())\{\
+            \cf7 \strokec7 // go down all the way to the left leaf node\cf2 \strokec2 \
+            \cf7 \strokec7 // add all the left nodes to the stack \cf2 \strokec2 \
+            \cf6 \strokec6 while\cf2 \strokec2  (curr != \cf6 \strokec6 null\cf2 \strokec2 )\{\
+                s.push(curr);\
+                \cf7 \strokec7 // record the current path\cf2 \strokec2 \
+                path.add(curr.val);\
+                \cf7 \strokec7 // record the current sum along the current path\cf2 \strokec2 \
+                pathSum += curr.val;\
+                curr = curr.left;\
+            \}\
+            \cf7 \strokec7 // check left leaf node's right subtree \cf2 \strokec2 \
+            \cf7 \strokec7 // or check if it is not from the right subtree\cf2 \strokec2 \
+            \cf7 \strokec7 // why peek here? \cf2 \strokec2 \
+            \cf7 \strokec7 // because if it has right subtree, we don't need to push it back\cf2 \strokec2 \
+            curr = s.peek();\
+            \cf6 \strokec6 if\cf2 \strokec2  (curr.right != \cf6 \strokec6 null\cf2 \strokec2  && curr.right != prev)\{\
+                curr = curr.right;\
+                \cf6 \strokec6 continue\cf2 \strokec2 ; \cf7 \strokec7 // back to the outer while loop\cf2 \strokec2 \
+            \}\
+            \cf7 \strokec7 // check leaf \cf2 \strokec2 \
+            \cf6 \strokec6 if\cf2 \strokec2  (curr.left == \cf6 \strokec6 null\cf2 \strokec2  && curr.right == \cf6 \strokec6 null\cf2 \strokec2  && pathSum == sum)\{\
+                list.add(\cf6 \strokec6 new\cf2 \strokec2  ArrayList<Integer>(path));\
+                \cf7 \strokec7 // why do we need new arraylist here?\cf2 \strokec2 \
+                \cf7 \strokec7 // if we are using the same path variable path\cf2 \strokec2 \
+                \cf7 \strokec7 // path will be cleared after the traversal\cf2 \strokec2 \
+            \}\
+            \cf7 \strokec7 // pop out the current value\cf2 \strokec2 \
+            s.pop();\
+            prev = curr;\
+            \cf7 \strokec7 // subtract current node's val from path sum \cf2 \strokec2 \
+            pathSum -= curr.val;\
+            \cf7 \strokec7 // as this current node is done, remove it from the current path\cf2 \strokec2 \
+            path.remove(path.size()-\cf4 \strokec4 1\cf2 \strokec2 );\
+            \cf7 \strokec7 // reset current node to null, so check the next item from the stack \cf2 \strokec2 \
+            curr = \cf6 \strokec6 null\cf2 \strokec2 ;\
+        \}\
+        \cf6 \strokec6 return\cf2 \strokec2  list;\
+    \}\
+}

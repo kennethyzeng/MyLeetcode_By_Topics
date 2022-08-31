@@ -1,0 +1,169 @@
+#1             ###############===========31. Queue By Two Stacks===========###############
+
+#2           ###############===========32. Stack With min()===========###############
+Method 1: 
+
+	->Create two stacks(Jave) or two Lists; Stack1 for normal stack, Stack2 is to tracking and push min_value
+	-> when push, stack1 is normal push,  Stack2 is push when the new item is less than current min_val or stack2 is empty
+	->when pop, stack1 is normal pop, stack2 is pop when stack1.pop equal to stack.peek 
+	-> for Getmin function, return stack2.peeks()
+Note: 4 functions: push(), pop(), top(), getmin()
+
+Method 2: 
+
+#3           ###############===========82. Remove Adjacent Repeated Characters IV===========###############
+To solove the this particular problem, need to ask or think about the corner case: 
+is it only remove adjacent character like Case 1 or case 2?  or 
+is it remove all adjacent character like case 3?
+
+if for case 1 and 2, Method 1 is a solution; if case 3, method 2 is a solution
+Case 1:
+Input: s = "abbaca"
+Output: "ca"
+
+
+Case:
+Input: s = "azxxzy"
+Output: "ay"
+Examples
+
+Case 3:
+"abbbaaccz" → "aaaccz" → "ccz" → "z"
+"aabccdc" → "bccdc" → "bdc"
+
+
+Method 1: 
+	->Create a stack(Java) or list act as stack(python 
+	-> for each character(c) in string(S): if (stack is not empty and stack.peek == c) --> stack.pop()
+	   else: stack.push(c)
+	->sb.apppend(stack.pop()) --> pop the element from stack and combine them to a sting 
+	-> reverse the string 
+
+Note: for Java, you may need to call two module: Stack and StringBuilder. StringBuilder like like pthon. it has sb.append(); sb.reverse(); sb.toString(), s.lenth()
+	StringBuilder sb = new StringBuilder();
+       for list act as Stack in python, don't need to do "reverse" action. just combine them because it is list 
+		return ''.join(stack)
+
+	
+#4           ###############===========118. Array Deduplication IV===========###############
+
+#5           ###############===========198. Largest Rectangle In Histogram===========###############
+don't understand
+#6           ###############===========279. Sort With 3 Stacks===========###############
+Method 1: implement a modified quick sort or mergert sort(need two more stacks)
+	divide the stack into two parts, recursively sort each stack, and merge them back in sorted order into the original stack 
+#7           ###############===========280. Sort With 2 Stacks===========###############
+Approach: Stack A with unsorted integer, Stack B(let stkB store data in decent order), variable tmp
+
+Step 1: while stkA is  not empty, let tmp = stkA.pop()
+Step 2: if stkB is empty || stkB.peek >= tmp  ==> stkB.push(tmp) 
+	otherwise, pop element from stack B to stack A until above condition is true:   stkA.push(stkB.pop)
+
+step 3: when above loop is completed, stack B should be in descent order
+step 4: pop all the item from stkB and push them back to stackA==> StackA should be smallest number on the top 
+
+Note: if you want the largest number on the top, you can switch sign symobl at step 2 
+ 
+#8           ###############===========634. Stack by Queue(s)===========###############
+####################225. Implement Stack using Queues
+Queue: q.add(x), q.pop() or q.remove(); q.peek(), q.isEmpty(), q.size()
+
+Approach in Java: This method is differnce from approach of "Queue using Stack" due to difference of their property 
+In "Queue using Stack", we use two stack to ack as Queue. In this exmaple, we only use one Queue. 
+queue.add(queue.poll) --> poll data the from front and add it the the end after push a new_data 
+==> so the new_data become the next pop() from Queue 
+
+
+Note: 232. Implement Queue using Stacks @ Leetcode (complete)--> check 
+#9           ###############===========645. Deque By Three Stacks===========###############
+
+########################################################################################################
+#10           ###############===========8. Evaluate Reverse Polish Notation===========###############
+Time Complexity: O(N) where N is the length of tokens
+Space Complexity: O(N) for the length of the stack, up to N / 2 + 1 values
+
+Aporach: 
+Method 1: 
+Step1: Create a deque which act as stack or import stack module or haset
+Step2: literate the token. If char S in "*, /, +, -", you take corresesping actions for those symbole 
+	method 1: use if(s.equals("*")  
+	method 2. swich a[i] which is character position, case "+", execue ...
+	
+concept: whenever not detect special character like * - + /, push the integer in the stack. 
+	otherwise, pop two element from Stack; first pop is considered right, second pop is considered left
+	it is always (left +-*/ right), the result is push back to stack 
+
+corner case to consider: will it be empty stack when coming string is special character. By considering 
+giving example, it seems the string is certain order to support 
+
+case to consider: why the character can be +_*/ when the token is string
+
+#11           ###############===========102. Largest Rectangle Of 1s===========###############
+
+
+#12           ###############===========159. Simplify Path===========###############
+Approach:  
+Step 1: we can split the string by '\' and consider different cases
+Step 2: 
+	case 1: .. back to previous level 
+	case 2: . keep at the current directory; didn't chang level of directory 
+	case 3: // is consider /; also consided "" after split "/"
+	**case 4: anyother format like ... is considered treated as file/directory names  ==> need to ask if push it to the stack or consider 
+
+1. split the string by split('\')
+2. create stack and did push and pop function depend on above conditions consideration
+	use hashset
+	use Linkedlist for stack is faster 
+	use array 
+3. conbmine all element in stack
+	check if stack is empty   return "/"
+	otherwise, return conbine string
+#13           ###############===========237. Longest Valid Parentheses===========###############
+Three method
+1. bruce force
+2. DP
+3. stack
+it is kind of hard problem. need time to learn
+
+#14           ###############===========242. Valid Parenthese===========###############
+creat a dict key and value for {}, {}, (), then check 
+
+#15           ###############===========370. Evaluate Suffix Expression===========###############
+
+#16           ###############===========428. Remove Duplicate Letters===========##leetcode 370#############
+
+#17           ###############===========448. Basic Calculator===========###############
+
+#18           ###############===========475. Different Ways to Add Parentheses===========###############
+
+#19           ###############===========516. Nested List Weight Sum===========###############
+
+#20           ###############===========522. Trapping Rain Water===========###############
+
+#########################################################################################################
+#21           ###############===========552. Sum of Numbers in a Stack===========###############
+
+#22           ###############===========553. Shuffle Stacks===========###############
+
+#23           ###############===========588. Distance to the First Greater Number===========###############
+
+#24           ###############===========589. Number Crashes===========###############
+
+#25           ###############===========615. Validate Stack Sequences===========###############
+
+#26           ###############===========616. Decode String===========###############
+
+#27           ###############===========621. Decompress String III===========###############
+
+#28           ###############===========629. Execution Time of Functions===========###############
+
+#29           ###############===========675. Maximum Binary Tree===========###############
+
+#30           ###############===========678. Next Greater Number I===========###############
+
+########################################################################################################
+#31           ###############===========679. Next Greater Number II===========###############
+
+#32           ###############===========680. Next Greater Number III===========###############
+
+#33           ###############===========737. [Debug] Stack With min()===========###############

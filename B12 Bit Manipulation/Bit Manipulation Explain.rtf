@@ -1,0 +1,500 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 HelveticaNeue-Medium;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\fmodern\fcharset0 Courier;\f4\fnil\fcharset0 HelveticaNeue-Italic;}
+{\colortbl;\red255\green255\blue255;\red51\green51\blue51;\red255\green255\blue255;\red51\green51\blue51;
+\red251\green0\blue255;\red0\green0\blue0;\red78\green78\blue78;\red35\green255\blue6;\red255\green255\blue255;
+\red151\green0\blue126;\red245\green247\blue249;\red29\green38\blue42;\red20\green0\blue196;\red73\green17\blue135;
+\red12\green90\blue1;\red67\green91\blue103;\red181\green0\blue19;\red78\green106\blue120;}
+{\*\expandedcolortbl;;\cssrgb\c25882\c25882\c25882;\cssrgb\c100000\c100000\c100000;\cssrgb\c25911\c25911\c25879;
+\cssrgb\c100000\c7248\c100000;\cssrgb\c0\c0\c0\c85098;\cssrgb\c38039\c38039\c38039;\cssrgb\c0\c100000\c0;\cssrgb\c100000\c100000\c99985;
+\cssrgb\c66667\c5098\c56863;\cssrgb\c96863\c97647\c98039;\cssrgb\c14902\c19608\c21961;\cssrgb\c10980\c0\c81176;\cssrgb\c36078\c14902\c60000;
+\cssrgb\c0\c41569\c0;\cssrgb\c32941\c43137\c47843;\cssrgb\c76863\c10196\c8627;\cssrgb\c37647\c49020\c54510;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}}
+\margl1440\margr1440\vieww25100\viewh13280\viewkind0
+\deftab720
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Bit manipulation is the act of algorithmically manipulating bits or other pieces of data shorter than a word. Computer programming tasks that require bit manipulation include low-level device control, \cf4 \cb5 \strokec4 error detection and correction algorithms, data compression, encryption algorithms, and optimization\cf2 \cb3 \strokec2 . For most other tasks, modern programming languages allow the programmer to work directly with abstractions instead of bits that represent those abstractions. Source code that does bit manipulation makes use of the bitwise operations: AND, OR, XOR, NOT, and bit shifts.\
+\
+Bit manipulation, in some cases, can obviate or reduce the need to loop over a data structure and can give many-fold speed ups, as bit manipulations are processed in parallel, but the code can become more difficult to write and maintain.\
+\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \strokec6 Details\
+\pard\pardeftab720\sa140\partightenfactor0
+
+\fs28 \cf6 Basics\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0 \cf2 \strokec2 \
+At the heart of bit manipulation are the bit-wise operators & (and), | (or), ~ (not) and ^ (exclusive-or, xor) and shift operators a << b and a >> b.\
+\
+\pard\pardeftab720\sa280\partightenfactor0
+\cf7 \cb1 \strokec7 \
+\pard\pardeftab720\sa280\partightenfactor0
+\cf7 \cb3 There is no boolean operator counterpart to bitwise exclusive-or, but there is a simple explanation. The exclusive-or operation takes two inputs and returns a 1 if either one or the other of the inputs is a 1, but not if both are. That is, if both inputs are 1 or both inputs are 0, it returns 0. Bitwise exclusive-or, with the operator of a caret, ^, performs the exclusive-or operation on each pair of bits. Exclusive-or is commonly abbreviated XOR.\cb1 \
+\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0\cf8 \cb9 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\cb9 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 Set union A | B\cb1 \strokec4 \
+\ls1\ilvl0\cb9 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\cb9 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 Set intersection A & B\cb1 \strokec4 \
+\ls1\ilvl0\cb9 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\cb9 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 Set subtraction A & ~B\cb1 \strokec4 \
+\ls1\ilvl0\cb9 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\cb9 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 Set negation ALL_BITS ^ A or ~A\cb1 \strokec4 \
+\ls1\ilvl0\cb9 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\cb9 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 Set bit A |= 1 << bit\cb1 \strokec4 \
+\ls1\ilvl0\cb9 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\cb9 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 Clear bit A &= ~(1 << bit)\cb1 \strokec4 \
+\ls1\ilvl0\cb9 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\cb9 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 Test bit (A & 1 << bit) != 0\cb1 \strokec4 \
+\ls1\ilvl0\cb9 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\cb9 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 Extract last bit A&-A or A&~(A-1) or x^(x&(x-1))\cb1 \strokec4 \
+\ls1\ilvl0\cb9 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\cb9 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 Remove last bit A&(A-1)\cb1 \strokec4 \
+\ls1\ilvl0\cb9 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\cb9 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 Get all 1-bits ~0\cf2 \cb1 \strokec2 \
+\pard\pardeftab720\sa140\partightenfactor0
+
+\f1 \cf6 \cb3 \strokec6 Examples\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0 \cf2 \strokec2 \
+Count the number of ones in the binary representation of the given number\
+\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f2\fs26 \cf10 \cb11 \strokec10 int\cf12 \strokec12  \cf13 \strokec13 count_one\cf14 \strokec14 (\cf10 \strokec10 int\cf14 \strokec14  n)\cf12 \strokec12  \{\
+    \cf10 \strokec10 while\cf12 \strokec12 (n) \{\
+        n = n&(n\cf13 \strokec13 -1\cf12 \strokec12 );\
+        count++;\
+    \}\
+    \cf10 \strokec10 return\cf12 \strokec12  count;\
+\}\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \strokec2 \
+Is power of four (actually map-checking, iterative and recursive methods can do the same)\
+\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f2\fs26 \cf10 \cb11 \strokec10 bool\cf12 \strokec12  \cf13 \strokec13 isPowerOfFour\cf14 \strokec14 (\cf10 \strokec10 int\cf14 \strokec14  n)\cf12 \strokec12  \{\
+    \cf10 \strokec10 return\cf12 \strokec12  !(n&(n\cf13 \strokec13 -1\cf12 \strokec12 )) && (n&\cf13 \strokec13 0x55555555\cf12 \strokec12 );\
+    \cf15 \strokec15 //check the 1-bit location;\cf12 \strokec12 \
+\}\
+\pard\pardeftab720\sa140\partightenfactor0
+
+\f3 \cf16 \strokec16 ^
+\f1\fs28 \cf6 \cb3 \strokec6 \'a0tricks\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0 \cf2 \strokec2 \
+Use\'a0
+\f3\fs26 \cf16 \cb11 \strokec16 ^
+\f0\fs28 \cf2 \cb3 \strokec2 \'a0to remove even exactly same numbers and save the odd, or save the distinct bits and remove the same.\
+\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \strokec6 Sum of Two Integers\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \strokec2 \
+Use\'a0
+\f3\fs26 \cf16 \cb11 \strokec16 ^
+\f0\fs28 \cf2 \cb3 \strokec2 \'a0and\'a0
+\f3\fs26 \cf16 \cb11 \strokec16 &
+\f0\fs28 \cf2 \cb3 \strokec2 \'a0to add two integers\
+\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f2\fs26 \cf10 \cb11 \strokec10 int\cf12 \strokec12  \cf13 \strokec13 getSum\cf14 \strokec14 (\cf10 \strokec10 int\cf14 \strokec14  a, \cf10 \strokec10 int\cf14 \strokec14  b)\cf12 \strokec12  \{\
+    \cf10 \strokec10 return\cf12 \strokec12  b==\cf13 \strokec13 0\cf12 \strokec12 ? a:getSum(a^b, (a&b)<<\cf13 \strokec13 1\cf12 \strokec12 ); \cf15 \strokec15 //be careful about the terminating condition;\cf12 \strokec12 \
+\}\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \cb3 \strokec6 Missing Number\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \strokec2 \
+Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array. For example, Given nums = [0, 1, 3] return 2. (Of course, you can do this by math.)\
+\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f2\fs26 \cf10 \cb11 \strokec10 int\cf12 \strokec12  \cf13 \strokec13 missingNumber\cf14 \strokec14 (vector<\cf10 \strokec10 int\cf14 \strokec14 >& nums)\cf12 \strokec12  \{\
+    \cf10 \strokec10 int\cf12 \strokec12  ret = \cf13 \strokec13 0\cf12 \strokec12 ;\
+    \cf10 \strokec10 for\cf12 \strokec12 (\cf10 \strokec10 int\cf12 \strokec12  i = \cf13 \strokec13 0\cf12 \strokec12 ; i < nums.size(); ++i) \{\
+        ret ^= i;\
+        ret ^= nums[i];\
+    \}\
+    \cf10 \strokec10 return\cf12 \strokec12  ret^=nums.size();\
+\}\
+\pard\pardeftab720\sa140\partightenfactor0
+
+\f3 \cf16 \strokec16 |
+\f1\fs28 \cf6 \cb3 \strokec6 \'a0tricks\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0 \cf2 \strokec2 \
+Keep as many 1-bits as possible\
+\
+Find the largest power of 2 (most significant bit in binary form), which is less than or equal to the given number N.\
+\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f2\fs26 \cf10 \cb11 \strokec10 long\cf12 \strokec12  \cf13 \strokec13 largest_power\cf14 \strokec14 (\cf10 \strokec10 long\cf14 \strokec14  N)\cf12 \strokec12  \{\
+    \cf15 \strokec15 //changing all right side bits to 1.\cf12 \strokec12 \
+    N = N | (N>>\cf13 \strokec13 1\cf12 \strokec12 );\
+    N = N | (N>>\cf13 \strokec13 2\cf12 \strokec12 );\
+    N = N | (N>>\cf13 \strokec13 4\cf12 \strokec12 );\
+    N = N | (N>>\cf13 \strokec13 8\cf12 \strokec12 );\
+    N = N | (N>>\cf13 \strokec13 16\cf12 \strokec12 );\
+    \cf10 \strokec10 return\cf12 \strokec12  (N+\cf13 \strokec13 1\cf12 \strokec12 )>>\cf13 \strokec13 1\cf12 \strokec12 ;\
+\}\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \cb3 \strokec6 Reverse Bits\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \strokec2 \
+Reverse bits of a given 32 bits unsigned integer.\
+\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \strokec6 Solution\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f2\fs26 \cf10 \cb11 \strokec10 uint32_t\cf12 \strokec12  \cf13 \strokec13 reverseBits\cf14 \strokec14 (\cf10 \strokec10 uint32_t\cf14 \strokec14  n)\cf12 \strokec12  \{\
+    \cf10 \strokec10 unsigned\cf12 \strokec12  \cf10 \strokec10 int\cf12 \strokec12  mask = \cf13 \strokec13 1\cf12 \strokec12 <<\cf13 \strokec13 31\cf12 \strokec12 , res = \cf13 \strokec13 0\cf12 \strokec12 ;\
+    \cf10 \strokec10 for\cf12 \strokec12 (\cf10 \strokec10 int\cf12 \strokec12  i = \cf13 \strokec13 0\cf12 \strokec12 ; i < \cf13 \strokec13 32\cf12 \strokec12 ; ++i) \{\
+        \cf10 \strokec10 if\cf12 \strokec12 (n & \cf13 \strokec13 1\cf12 \strokec12 ) res |= mask;\
+        mask >>= \cf13 \strokec13 1\cf12 \strokec12 ;\
+        n >>= \cf13 \strokec13 1\cf12 \strokec12 ;\
+    \}\
+    \cf10 \strokec10 return\cf12 \strokec12  res;\
+\}\
+\cf10 \strokec10 uint32_t\cf12 \strokec12  \cf13 \strokec13 reverseBits\cf14 \strokec14 (\cf10 \strokec10 uint32_t\cf14 \strokec14  n)\cf12 \strokec12  \{\
+	\cf10 \strokec10 uint32_t\cf12 \strokec12  mask = \cf13 \strokec13 1\cf12 \strokec12 , ret = \cf13 \strokec13 0\cf12 \strokec12 ;\
+	\cf10 \strokec10 for\cf12 \strokec12 (\cf10 \strokec10 int\cf12 \strokec12  i = \cf13 \strokec13 0\cf12 \strokec12 ; i < \cf13 \strokec13 32\cf12 \strokec12 ; ++i)\{\
+		ret <<= \cf13 \strokec13 1\cf12 \strokec12 ;\
+		\cf10 \strokec10 if\cf12 \strokec12 (mask & n) ret |= \cf13 \strokec13 1\cf12 \strokec12 ;\
+		mask <<= \cf13 \strokec13 1\cf12 \strokec12 ;\
+	\}\
+	\cf10 \strokec10 return\cf12 \strokec12  ret;\
+\}\
+\pard\pardeftab720\sa140\partightenfactor0
+
+\f3 \cf16 \strokec16 &
+\f1\fs28 \cf6 \cb3 \strokec6 \'a0tricks\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0 \cf2 \strokec2 \
+Just selecting certain bits\
+\
+Reversing the bits in integer\
+\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f2\fs26 \cf12 \cb11 \strokec12 x = ((x & 0xaaaaaaaa) >> 1) | ((x & 0x55555555) << \cf17 \strokec17 1);\
+x = ((x & 0xcccccccc) >> 2) | ((x & 0x33333333) << 2);\
+x = ((x & 0xf0f0f0f0) >> 4) | ((x & 0x0f0f0f0f) << 4);\
+x = ((x & 0xff00ff00) >> 8) | ((x & 0x00ff00ff) << 8);\
+x = ((x & 0xffff0000) >> 16) | ((x & 0x0000ffff) << 16);\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \cb3 \strokec6 Bitwise AND of Numbers Range\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \strokec2 \
+Given a range [m, n] where 0 <= m <= n <= 2147483647, return the bitwise AND of all numbers in this range, inclusive. For example, given the range [5, 7], you should return 4.\
+\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \strokec6 Solution\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f2\fs26 \cf10 \cb11 \strokec10 int\cf12 \strokec12  \cf13 \strokec13 rangeBitwiseAnd\cf14 \strokec14 (\cf10 \strokec10 int\cf14 \strokec14  m, \cf10 \strokec10 int\cf14 \strokec14  n)\cf12 \strokec12  \{\
+    \cf10 \strokec10 int\cf12 \strokec12  a = \cf13 \strokec13 0\cf12 \strokec12 ;\
+    \cf10 \strokec10 while\cf12 \strokec12 (m != n) \{\
+        m >>= \cf13 \strokec13 1\cf12 \strokec12 ;\
+        n >>= \cf13 \strokec13 1\cf12 \strokec12 ;\
+        a++;\
+    \}\
+    \cf10 \strokec10 return\cf12 \strokec12  m<<a; \
+\}\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \cb3 \strokec6 Number of 1 Bits\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \strokec2 \
+Write a function that takes an unsigned integer and returns the number of \'921' bits it has (also known as the Hamming weight).\
+\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \strokec6 Solution\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f2\fs26 \cf10 \cb11 \strokec10 int\cf12 \strokec12  \cf13 \strokec13 hammingWeight\cf14 \strokec14 (\cf10 \strokec10 uint32_t\cf14 \strokec14  n)\cf12 \strokec12  \{\
+	\cf10 \strokec10 int\cf12 \strokec12  count = \cf13 \strokec13 0\cf12 \strokec12 ;\
+	\cf10 \strokec10 while\cf12 \strokec12 (n) \{\
+		n = n&(n\cf13 \strokec13 -1\cf12 \strokec12 );\
+		count++;\
+	\}\
+	\cf10 \strokec10 return\cf12 \strokec12  count;\
+\}\
+\cf10 \strokec10 int\cf12 \strokec12  \cf13 \strokec13 hammingWeight\cf14 \strokec14 (\cf10 \strokec10 uint32_t\cf14 \strokec14  n)\cf12 \strokec12  \{\
+    ulong mask = \cf13 \strokec13 1\cf12 \strokec12 ;\
+    \cf10 \strokec10 int\cf12 \strokec12  count = \cf13 \strokec13 0\cf12 \strokec12 ;\
+    \cf10 \strokec10 for\cf12 \strokec12 (\cf10 \strokec10 int\cf12 \strokec12  i = \cf13 \strokec13 0\cf12 \strokec12 ; i < \cf13 \strokec13 32\cf12 \strokec12 ; ++i)\{ \cf15 \strokec15 //31 will not do, delicate;\cf12 \strokec12 \
+        \cf10 \strokec10 if\cf12 \strokec12 (mask & n) count++;\
+        mask <<= \cf13 \strokec13 1\cf12 \strokec12 ;\
+    \}\
+    \cf10 \strokec10 return\cf12 \strokec12  count;\
+\}\
+\pard\pardeftab720\sa140\partightenfactor0
+
+\f1\fs28 \cf6 \cb3 \strokec6 Application\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\fs24 \cf6 Repeated DNA Sequences\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \strokec2 \
+All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, for example: "ACGAATTCCG". When studying DNA, it is sometimes useful to identify repeated sequences within the DNA. Write a function to find all the 10-letter-long sequences (substrings) that occur more than once in a DNA molecule.\cb1 \uc0\u8232 \cb3 For example,\cb1 \uc0\u8232 \cb3 Given s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT",\cb1 \uc0\u8232 \cb3 Return: ["AAAAACCCCC", "CCCCCAAAAA"].\
+\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \strokec6 Solution\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f2\fs26 \cf10 \cb11 \strokec10 class\cf12 \strokec12  \cf14 \strokec14 Solution\cf12 \strokec12  \{\
+\cf10 \strokec10 public\cf12 \strokec12 :\
+    \cf14 \strokec14 vector\cf12 \strokec12 <\cf14 \strokec14 string\cf12 \strokec12 > \cf13 \strokec13 findRepeatedDnaSequences\cf14 \strokec14 (string s)\cf12 \strokec12  \{\
+        \cf10 \strokec10 int\cf12 \strokec12  sLen = s.length();\
+        \cf14 \strokec14 vector\cf12 \strokec12 <\cf14 \strokec14 string\cf12 \strokec12 > v;\
+        \cf10 \strokec10 if\cf12 \strokec12 (sLen < \cf13 \strokec13 11\cf12 \strokec12 ) \cf10 \strokec10 return\cf12 \strokec12  v;\
+        \cf10 \strokec10 char\cf12 \strokec12  keyMap[\cf13 \strokec13 1\cf12 \strokec12 <<\cf13 \strokec13 21\cf12 \strokec12 ]\{\cf13 \strokec13 0\cf12 \strokec12 \};\
+        \cf10 \strokec10 int\cf12 \strokec12  hashKey = \cf13 \strokec13 0\cf12 \strokec12 ;\
+        \cf10 \strokec10 for\cf12 \strokec12 (\cf10 \strokec10 int\cf12 \strokec12  i = \cf13 \strokec13 0\cf12 \strokec12 ; i < \cf13 \strokec13 9\cf12 \strokec12 ; ++i) hashKey = (hashKey<<\cf13 \strokec13 2\cf12 \strokec12 ) | (s[i]-\cf17 \strokec17 'A'\cf12 \strokec12 +\cf13 \strokec13 1\cf12 \strokec12 )%\cf13 \strokec13 5\cf12 \strokec12 ;\
+        \cf10 \strokec10 for\cf12 \strokec12 (\cf10 \strokec10 int\cf12 \strokec12  i = \cf13 \strokec13 9\cf12 \strokec12 ; i < sLen; ++i) \{\
+            \cf10 \strokec10 if\cf12 \strokec12 (keyMap[hashKey = ((hashKey<<\cf13 \strokec13 2\cf12 \strokec12 )|(s[i]-\cf17 \strokec17 'A'\cf12 \strokec12 +\cf13 \strokec13 1\cf12 \strokec12 )%\cf13 \strokec13 5\cf12 \strokec12 )&\cf13 \strokec13 0xfffff\cf12 \strokec12 ]++ == \cf13 \strokec13 1\cf12 \strokec12 )\
+                v.push_back(s.substr(i\cf13 \strokec13 -9\cf12 \strokec12 , \cf13 \strokec13 10\cf12 \strokec12 ));\
+        \}\
+        \cf10 \strokec10 return\cf12 \strokec12  v;\
+    \}\
+\};\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf7 \cb1 \strokec7 \
+\pard\pardeftab720\sa280\partightenfactor0
+\cf7 \cb3 But the above solution can be invalid when repeated sequence appears too many times, in which case we should use\'a0
+\f3\fs26 \cf16 \cb11 \strokec16 unordered_map<int, int> keyMap
+\f0\fs28 \cf7 \cb3 \strokec7 \'a0to replace\'a0
+\f3\fs26 \cf16 \cb11 \strokec16 char keyMap[1<<21]\{0\}
+\f0\fs28 \cf7 \cb3 \strokec7 here.\cb1 \
+\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \cb3 \strokec6 Majority Element\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \strokec2 \
+Given an array of size n, find the majority element. The majority element is the element that appears more than 
+\f2 \uc0\u8970 
+\f0  n/2 
+\f2 \uc0\u8971 
+\f0  times. (bit-counting as a usual way, but here we actually also can adopt sorting and Moore Voting Algorithm)\
+\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \strokec6 Solution\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f2\fs26 \cf10 \cb11 \strokec10 int\cf12 \strokec12  \cf13 \strokec13 majorityElement\cf14 \strokec14 (vector<\cf10 \strokec10 int\cf14 \strokec14 >& nums)\cf12 \strokec12  \{\
+    \cf10 \strokec10 int\cf12 \strokec12  len = \cf10 \strokec10 sizeof\cf12 \strokec12 (\cf10 \strokec10 int\cf12 \strokec12 )*\cf13 \strokec13 8\cf12 \strokec12 , size = nums.size();\
+    \cf10 \strokec10 int\cf12 \strokec12  count = \cf13 \strokec13 0\cf12 \strokec12 , mask = \cf13 \strokec13 1\cf12 \strokec12 , ret = \cf13 \strokec13 0\cf12 \strokec12 ;\
+    \cf10 \strokec10 for\cf12 \strokec12 (\cf10 \strokec10 int\cf12 \strokec12  i = \cf13 \strokec13 0\cf12 \strokec12 ; i < len; ++i) \{\
+        count = \cf13 \strokec13 0\cf12 \strokec12 ;\
+        \cf10 \strokec10 for\cf12 \strokec12 (\cf10 \strokec10 int\cf12 \strokec12  j = \cf13 \strokec13 0\cf12 \strokec12 ; j < size; ++j)\
+            \cf10 \strokec10 if\cf12 \strokec12 (mask & nums[j]) count++;\
+        \cf10 \strokec10 if\cf12 \strokec12 (count > size/\cf13 \strokec13 2\cf12 \strokec12 ) ret |= mask;\
+        mask <<= \cf13 \strokec13 1\cf12 \strokec12 ;\
+    \}\
+    \cf10 \strokec10 return\cf12 \strokec12  ret;\
+\}\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \cb3 \strokec6 Single Number III\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \strokec2 \
+Given an array of integers, every element appears three times except for one. Find that single one. (Still this type can be solved by bit-counting easily.) But we are going to solve it by\'a0
+\f3\fs26 \cf16 \cb11 \strokec16 digital logic design
+\f0\fs28 \cf2 \cb3 \strokec2 \
+\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \strokec6 Solution\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f2\fs26 \cf15 \cb11 \strokec15 //inspired by logical circuit design and boolean algebra;\cf12 \strokec12 \
+\cf15 \strokec15 //counter - unit of 3;\cf12 \strokec12 \
+\cf15 \strokec15 //current   incoming  next\cf12 \strokec12 \
+\cf15 \strokec15 //a b            c    a b\cf12 \strokec12 \
+\cf15 \strokec15 //0 0            0    0 0\cf12 \strokec12 \
+\cf15 \strokec15 //0 1            0    0 1\cf12 \strokec12 \
+\cf15 \strokec15 //1 0            0    1 0\cf12 \strokec12 \
+\cf15 \strokec15 //0 0            1    0 1\cf12 \strokec12 \
+\cf15 \strokec15 //0 1            1    1 0\cf12 \strokec12 \
+\cf15 \strokec15 //1 0            1    0 0\cf12 \strokec12 \
+\cf15 \strokec15 //a = a&~b&~c + ~a&b&c;\cf12 \strokec12 \
+\cf15 \strokec15 //b = ~a&b&~c + ~a&~b&c;\cf12 \strokec12 \
+\cf15 \strokec15 //return a|b since the single number can appear once or twice;\cf12 \strokec12 \
+\pard\pardeftab720\sl416\partightenfactor0
+\cf10 \strokec10 int\cf12 \strokec12  \cf13 \strokec13 singleNumber\cf14 \strokec14 (vector<\cf10 \strokec10 int\cf14 \strokec14 >& nums)\cf12 \strokec12  \{\
+    \cf10 \strokec10 int\cf12 \strokec12  t = \cf13 \strokec13 0\cf12 \strokec12 , a = \cf13 \strokec13 0\cf12 \strokec12 , b = \cf13 \strokec13 0\cf12 \strokec12 ;\
+    \cf10 \strokec10 for\cf12 \strokec12 (\cf10 \strokec10 int\cf12 \strokec12  i = \cf13 \strokec13 0\cf12 \strokec12 ; i < nums.size(); ++i) \{\
+        t = (a&~b&~nums[i]) | (~a&b&nums[i]);\
+        b = (~a&b&~nums[i]) | (~a&~b&nums[i]);\
+        a = t;\
+    \}\
+    \cf10 \strokec10 return\cf12 \strokec12  a | b;\
+\}\
+;\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \cb3 \strokec6 Maximum Product of Word Lengths\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \strokec2 \
+Given a string array words, find the maximum value of length(word[i]) * length(word[j]) where the two words do not share common letters. You may assume that each word will contain only lower case letters. If no such two words exist, return 0.\
+\
+\pard\pardeftab720\sa280\partightenfactor0
+\cf7 \cb1 \strokec7 \
+\pard\pardeftab720\sa280\partightenfactor0
+\cf7 \cb3 Example 1:\cb1 \uc0\u8232 \cb3 Given ["abcw", "baz", "foo", "bar", "xtfn", "abcdef"]\cb1 \uc0\u8232 \cb3 Return 16\cb1 \uc0\u8232 \cb3 The two words can be "abcw", "xtfn".\cb1 \
+\
+\
+\cb3 Example 2:\cb1 \uc0\u8232 \cb3 Given ["a", "ab", "abc", "d", "cd", "bcd", "abcd"]\cb1 \uc0\u8232 \cb3 Return 4\cb1 \uc0\u8232 \cb3 The two words can be "ab", "cd".\cb1 \
+\
+\
+\cb3 Example 3:\cb1 \uc0\u8232 \cb3 Given ["a", "aa", "aaa", "aaaa"]\cb1 \uc0\u8232 \cb3 Return 0\cb1 \uc0\u8232 \cb3 No such pair of words.\cb1 \
+\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \cb3 \strokec6 Solution\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \strokec2 \
+Since we are going to use the length of the word very frequently and we are to compare the letters of two words checking whether they have some letters in common:\
+\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls2\ilvl0\cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 using an array of int to pre-store the length of each word reducing the frequently\'a0
+\f4\i measuring
+\f0\i0 \'a0process;\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 since int has 4 bytes, a 32-bit type, and there are only 26 different letters, so we can just use one bit to indicate the existence of the letter in a word.\cb1 \
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f2\fs26 \cf10 \cb11 \strokec10 int\cf12 \strokec12  \cf13 \strokec13 maxProduct\cf14 \strokec14 (vector<string>& words)\cf12 \strokec12  \{\
+    \cf14 \strokec14 vector\cf12 \strokec12 <\cf10 \strokec10 int\cf12 \strokec12 > \cf13 \strokec13 mask\cf14 \strokec14 (words.size())\cf12 \strokec12 ;\
+    \cf14 \strokec14 vector\cf12 \strokec12 <\cf10 \strokec10 int\cf12 \strokec12 > \cf13 \strokec13 lens\cf14 \strokec14 (words.size())\cf12 \strokec12 ;\
+    \cf10 \strokec10 for\cf12 \strokec12 (\cf10 \strokec10 int\cf12 \strokec12  i = \cf13 \strokec13 0\cf12 \strokec12 ; i < words.size(); ++i) lens[i] = words[i].length();\
+    \cf10 \strokec10 int\cf12 \strokec12  result = \cf13 \strokec13 0\cf12 \strokec12 ;\
+    \cf10 \strokec10 for\cf12 \strokec12  (\cf10 \strokec10 int\cf12 \strokec12  i=\cf13 \strokec13 0\cf12 \strokec12 ; i<words.size(); ++i) \{\
+        \cf10 \strokec10 for\cf12 \strokec12  (\cf10 \strokec10 char\cf12 \strokec12  c : words[i])\
+            mask[i] |= \cf13 \strokec13 1\cf12 \strokec12  << (c - \cf17 \strokec17 'a'\cf12 \strokec12 );\
+        \cf10 \strokec10 for\cf12 \strokec12  (\cf10 \strokec10 int\cf12 \strokec12  j=\cf13 \strokec13 0\cf12 \strokec12 ; j<i; ++j)\
+            \cf10 \strokec10 if\cf12 \strokec12  (!(mask[i] & mask[j]))\
+                result = max(result, lens[i]*lens[j]);\
+    \}\
+    \cf10 \strokec10 return\cf12 \strokec12  result;\
+\}\
+\pard\pardeftab720\sa140\partightenfactor0
+
+\f1\fs28 \cf6 \cb3 \strokec6 Attention\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls3\ilvl0
+\f0 \cf2 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 result after shifting left(or right) too much is undefined\cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 right shifting operations on negative values are undefined\cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 right operand in shifting should be non-negative, otherwise the result is undefined\cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 The & and | operators have lower precedence than comparison operators\cb1 \
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \cb3 \strokec6 Sets\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \strokec2 \
+All the subsets\cb1 \uc0\u8232 \cb3 A big advantage of bit manipulation is that it is trivial to iterate over all the subsets of an N-element set: every N-bit value represents some subset. Even better,\'a0
+\f3\fs26 \cf16 \cb11 \strokec16 if A is a subset of B then the number representing A is less than that representing B
+\f0\fs28 \cf2 \cb3 \strokec2 , which is convenient for some dynamic programming solutions.\
+\
+It is also possible to iterate over all the subsets of a particular subset (represented by a bit pattern), provided that you don\'92t mind visiting them in reverse order (if this is problematic, put them in a list as they\'92re generated, then walk the list backwards). The trick is similar to that for finding the lowest bit in a number. If we subtract 1 from a subset, then the lowest set element is cleared, and every lower element is set. However, we only want to set those lower elements that are in the superset. So the iteration step is just\'a0
+\f3\fs26 \cf16 \cb11 \strokec16 i = (i - 1) & superset
+\f0\fs28 \cf2 \cb3 \strokec2 .\
+\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f2\fs26 \cf14 \cb11 \strokec14 vector\cf12 \strokec12 <\cf14 \strokec14 vector\cf12 \strokec12 <\cf10 \strokec10 int\cf12 \strokec12 >> subsets(\cf14 \strokec14 vector\cf12 \strokec12 <\cf10 \strokec10 int\cf12 \strokec12 >& nums) \{\
+    \cf14 \strokec14 vector\cf12 \strokec12 <\cf14 \strokec14 vector\cf12 \strokec12 <\cf10 \strokec10 int\cf12 \strokec12 >> vv;\
+    \cf10 \strokec10 int\cf12 \strokec12  size = nums.size(); \
+    \cf10 \strokec10 if\cf12 \strokec12 (size == \cf13 \strokec13 0\cf12 \strokec12 ) \cf10 \strokec10 return\cf12 \strokec12  vv;\
+    \cf10 \strokec10 int\cf12 \strokec12  num = \cf13 \strokec13 1\cf12 \strokec12  << size;\
+    vv.resize(num);\
+    \cf10 \strokec10 for\cf12 \strokec12 (\cf10 \strokec10 int\cf12 \strokec12  i = \cf13 \strokec13 0\cf12 \strokec12 ; i < num; ++i) \{\
+        \cf10 \strokec10 for\cf12 \strokec12 (\cf10 \strokec10 int\cf12 \strokec12  j = \cf13 \strokec13 0\cf12 \strokec12 ; j < size; ++j)\
+            \cf10 \strokec10 if\cf12 \strokec12 ((\cf13 \strokec13 1\cf12 \strokec12 <<j) & i) vv[i].push_back(nums[j]);   \
+    \}\
+    \cf10 \strokec10 return\cf12 \strokec12  vv;\
+\}\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \strokec2 \
+Actually there are two more methods to handle this using\'a0
+\f3\fs26 \cf16 \cb11 \strokec16 recursion
+\f0\fs28 \cf2 \cb3 \strokec2 \'a0and\'a0
+\f3\fs26 \cf16 \cb11 \strokec16 iteration
+\f0\fs28 \cf2 \cb3 \strokec2 \'a0respectively.\
+\
+\pard\pardeftab720\sa120\partightenfactor0
+
+\f1\fs24 \cf6 \strokec6 Bitset\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \strokec2 \
+A\'a0{\field{\*\fldinst{HYPERLINK "http://www.cplusplus.com/reference/bitset/bitset/?kw=bitset"}}{\fldrslt \cf18 \strokec18 bitset}}\'a0stores bits (elements with only two possible values: 0 or 1, true or false, ...).\cb1 \uc0\u8232 \cb3 The class emulates an array of bool elements, but optimized for space allocation: generally, each element occupies only one bit (which, on most systems, is eight times less than the smallest elemental type: char).\
+\
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f2\fs26 \cf15 \cb11 \strokec15 // bitset::count\cf12 \strokec12 \
+\pard\pardeftab720\sl416\partightenfactor0
+\cf13 \strokec13 #include <iostream>       // std::cout\cf12 \strokec12 \
+\cf13 \strokec13 #include <string>         // std::string\cf12 \strokec12 \
+\cf13 \strokec13 #include <bitset>         // std::bitset\cf12 \strokec12 \
+\
+\pard\pardeftab720\sl416\partightenfactor0
+\cf10 \strokec10 int\cf12 \strokec12  \cf13 \strokec13 main\cf12 \strokec12  \cf14 \strokec14 ()\cf12 \strokec12  \{\
+  \cf14 \strokec14 std\cf12 \strokec12 ::\cf14 \strokec14 bitset\cf12 \strokec12 <8> \cf13 \strokec13 foo\cf12 \strokec12  \cf14 \strokec14 (std::string(\cf17 \strokec17 "10110011"\cf14 \strokec14 ))\cf12 \strokec12 ;\
+  \cf14 \strokec14 std\cf12 \strokec12 ::\cf14 \strokec14 cout\cf12 \strokec12  << foo << \cf17 \strokec17 " has "\cf12 \strokec12 ;\
+  \cf14 \strokec14 std\cf12 \strokec12 ::\cf14 \strokec14 cout\cf12 \strokec12  << foo.count() << \cf17 \strokec17 " ones and "\cf12 \strokec12 ;\
+  \cf14 \strokec14 std\cf12 \strokec12 ::\cf14 \strokec14 cout\cf12 \strokec12  << (foo.size()-foo.count()) << \cf17 \strokec17 " zeros.\\n"\cf12 \strokec12 ;\
+  \cf10 \strokec10 return\cf12 \strokec12  \cf13 \strokec13 0\cf12 \strokec12 ;\
+\}\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \strokec2 \
+\pard\pardeftab720\partightenfactor0
+\cf2 Always welcom new ideas and\'a0
+\f3\fs26 \cf16 \cb11 \strokec16 practical
+\f0\fs28 \cf2 \cb3 \strokec2 \'a0tricks, just leave them in the comments!\
+}

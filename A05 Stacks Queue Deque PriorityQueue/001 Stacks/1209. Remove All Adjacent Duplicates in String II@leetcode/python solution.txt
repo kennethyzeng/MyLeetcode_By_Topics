@@ -1,0 +1,14 @@
+###########
+Something wrong with this logic?
+
+###########
+def removeDuplicates(self, S: str, k: int) -> str:
+	stk = []
+        for char in S:
+            if not stk or stk[-1][0] != char:  		####stk[-1] is the last index element of list. the push is a pair[char, 1] so stk[-1][0] is the char at stk 
+                stk.append([char, 1])
+            elif stk[-1][1] + 1 < k:
+                stk[-1][1] += 1
+            else:
+                stk.pop()
+        return ''.join(char * cnt for char, cnt in stk)

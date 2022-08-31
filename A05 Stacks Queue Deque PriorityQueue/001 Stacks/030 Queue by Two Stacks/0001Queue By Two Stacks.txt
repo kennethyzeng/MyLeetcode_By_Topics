@@ -1,0 +1,202 @@
+################=================Jave=================################
+Logic: 
+#0 first, It need to create a Stack class or call built-in stack class
+#1Stack's push and empty is similar to Queue's push and empty. push is push to the last index
+#2 Stack's LIFO and Queue's FIFO, so need another Stack to change for pop and peek features. 
+output.push(input.pop());
+
+Ex:
+ /** Get the front element. */
+    public int peek() {
+        if(output.empty())
+            while(!input.empty())
+               output.push(input.pop());
+        return output.peek();
+        
+    }
+    
+
+######################################################################
+class MyQueue {
+
+    Stack<Integer> input = new Stack();
+    Stack<Integer> output = new Stack();
+    
+    /** Initialize your data structure here. */
+    /**public MyQueue() {
+           Stack<Integer> input = new Stack();
+            Stack<Integer> output = new Stack();               
+    }*/
+    
+    /** Push element x to the back of queue. */
+    public void push(int x) {
+        input.push(x);
+    }
+    
+    /** Removes the element from in front of queue and returns that element. */
+    public int pop() {
+        peek(); 		//call peek function
+        return output.pop();     //int pop() Removes the element from the front of the queue and returns it.
+        
+    }
+    
+    /** Get the front element. */
+    public int peek() {
+        if(output.empty())
+            while(!input.empty())
+               output.push(input.pop());
+        return output.peek();
+        
+    }
+    
+    /** Returns whether the queue is empty. */
+    public boolean empty() {
+        return input.empty() && output.empty();
+        
+    }
+}
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue obj = new MyQueue();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.peek();
+ * boolean param_4 = obj.empty();
+ */
+
+
+
+################=================Python=================################
+
+########################################################################
+class MyQueue:
+
+    def __init__(self):
+    
+        """
+        Initialize your data structure here.
+        """
+        self.stack1 = []
+        self.stack2 = []
+
+    def push(self, x: int) -> None:
+        """
+        Push element x to the back of queue.
+        """
+        if x: self.stack1.append(x)
+
+    def pop(self) -> int:
+        """
+         Removes the element from in front of queue and returns that element.
+        """
+        if not self.stack2:
+          while self.stack1:
+              self.stack2.append(self.stack1.pop())
+        return self.stack2.pop()
+
+    def peek(self) -> int:
+        """
+        Get the front element.
+         """
+        if not self.stack2:
+            while self.stack1:
+                self.stack2.append(self.stack1.pop())
+        return self.stack2[-1]
+
+    def empty(self) -> bool:
+        """
+        Returns whether the queue is empty.
+        """
+        return not self.stack1 and not self.stack2
+
+# Your MyQueue object will be instantiated and called as such:
+# obj = MyQueue()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.peek()
+# param_4 = obj.empty()
+
+
+################=================Python=================################
+Logic:
+#1 use two list act as two Stacks 
+#2 #1Stack's push and empty is similar to Queue's push and empty. push is push to the last index
+#3 When do peeks and pop: Each time, it append all data from stack1 to stack2, after peek or pop a data, 
+			it move all data from stack2 back to stack1
+peeks:	res = self.stack_in[0] 		###comparing with pop() above 
+pop:	res = self.stack_out.pop()	###comparing with peek() above 
+
+key code:
+        n = len(self.stack_in) - 1 
+        for i in range(n):
+            self.stack_out.append(self.stack_in.pop())
+            
+        res = self.stack_in[0] 		###comparing with pop() above 
+        for i in range(n):
+            self.stack_in.append(self.stack_out.pop())
+        return res		#### result of cmd  res = self.stack_out.pop()
+
+#4 Disadvange of this method: time complexity 2* O(n) because it use linear twice for peek and pop
+
+Note: It is not completed. the code run error at 
+self.stack_in.append(self.stack_out.pop())
+
+it need edge scan like if is_empty()?
+########################################################################
+class MyQueue:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.stack_in = []
+        self.stack_out = []
+
+    def push(self, x: int) -> None:
+        """
+        Push element x to the back of queue.
+        """
+        self.stack_in.append(x)
+
+    def pop(self) -> int:
+        """
+        Removes the element from in front of queue and returns that element.
+        """
+        n = len(self.stack_in)-1
+        for i in range(n):
+            self.stack_out.append(self.stack_in.pop())
+        
+        res = self.stack_out.pop()	###comparing with peek() above 
+        
+        for i in range(n):
+            self.stack_in.append(self.stack_out.pop())
+            
+        return res		#### result of cmd  res = self.stack_out.pop()
+
+    def peek(self) -> int:
+        """
+        Get the front element.
+        """
+        n = len(self.stack_in) - 1 
+        for i in range(n):
+            self.stack_out.append(self.stack_in.pop())
+            
+        res = self.stack_in[0] 		###comparing with pop() above 
+        for i in range(n):
+            self.stack_in.append(self.stack_out.pop())
+        return res		#### result of cmd  res = self.stack_out.pop()
+    
+    def empty(self) -> bool:
+        """
+        Returns whether the queue is empty.
+        """
+        return len(self.stack_in) == 0
+
+
+# Your MyQueue object will be instantiated and called as such:
+# obj = MyQueue()
+# obj.push(x)
+# param_2 = obj.pop()
+# param_3 = obj.peek()
+# param_4 = obj.empty()

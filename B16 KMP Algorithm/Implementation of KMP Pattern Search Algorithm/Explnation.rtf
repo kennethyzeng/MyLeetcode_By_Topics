@@ -1,0 +1,75 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 Helvetica-Bold;\f2\fmodern\fcharset0 Courier;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red255\green255\blue255;
+\red255\green255\blue255;\red255\green255\blue255;\red255\green255\blue255;\red16\green16\blue18;}
+{\*\expandedcolortbl;;\cssrgb\c0\c1\c1;\cssrgb\c100000\c100000\c99985;\cssrgb\c100000\c100000\c99971;
+\cssrgb\c100000\c100000\c99956;\cssrgb\c100000\c100000\c99926;\cssrgb\c100000\c100000\c100000;\cssrgb\c7451\c7843\c9020;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid2\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww25100\viewh13280\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/\
+\
+https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm\
+\
+##########################\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 KMP (Knuth Morris Pratt) Pattern Searching\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \cb3 \strokec4 The KMP matching algorithm uses degenerating property (pattern having same sub-patterns appearing more than once in the pattern) of the pattern and improves the worst case complexity to O(n\
+\cf2 \cb3 \strokec5 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf2 \cb3 \strokec5 lps\'a0indicates longest proper prefix which is also suffix.
+\f2\b0 \AppleTypeServices \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 lps[] that tells us the count of characters to be skipped. \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f0 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 prefixes\'a0\
+Suffixes\
+\pard\pardeftab720\partightenfactor0
+
+\f2 \AppleTypeServices \cf2 \cb3 \strokec4 lps[i] = the longest proper prefix of pat[0..i] \
+              which is also a suffix of pat[0..i].\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs34 \AppleTypeServices\AppleTypeServicesF65539 \cf2 \cb3 \strokec4 \
+
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf2 \cb3 \strokec4 \
+
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf7 \cb8 \strokec7 How to use lps[] to decide next positions (or to know a number of characters to be skipped)?
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 \cf2 \cb3 \strokec4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 \strokec4 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl537\partightenfactor0
+\ls1\ilvl0
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf7 \cb8 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec7 We start comparison of pat[j] with j = 0 with characters of current window of text.\cb1 \
+\ls1\ilvl0\cb8 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec7 We keep matching characters txt[i] and pat[j] and keep incrementing i and j while pat[j] and txt[i] keep\'a0
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 matching
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 .\cb1 \
+\ls1\ilvl0\cb8 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec7 When we see a\'a0
+\f1\b \AppleTypeServices\AppleTypeServicesF65539 mismatch\
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\sl537\partightenfactor0
+\ls1\ilvl1
+\f0\b0 \AppleTypeServices\AppleTypeServicesF65539 \cf7 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec7 We know that characters pat[0..j-1] match with txt[i-j\'85i-1] (Note that j starts with 0 and increment it only when there is a match).\cb1 \
+\ls1\ilvl1\cb8 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec7 We also know (from above definition) that lps[j-1] is count of characters of pat[0\'85j-1] that are both proper prefix and suffix.\cb1 \
+\ls1\ilvl1\cb8 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec7 From above two points, we can conclude that we do not need to match these lps[j-1] characters with txt[i-j\'85i-1] because we know that these characters will anyway match. Let us consider above example to understand this.\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs32 \AppleTypeServices \cf2 \cb3 \strokec4 \
+\
+}

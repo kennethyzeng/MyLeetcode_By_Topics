@@ -1,0 +1,149 @@
+#######################################
+Idea:
+Whenever we have to iterate through a data type and remove potentially nested information, the natural thought is to use some kind of stack or recursive solution to keep track of the nesting data while we search for our matches.
+
+In a naive recursive solution, we can search for a pattern match by keeping track of the current count of adjacent duplicates, then recursively call the main function again on the string with the pattern removed. This solution repeatedly iterates through most of the string, but otherwise has low overhead, so it tends to be competitively performant, especially for shorter strings.
+
+In an effort to achieve a more efficient solution for longer strings, we can instead use a stack to build our answer. To avoid having to backtrack up to the last K elements of our stack after removing a match, we can keep a separate stack (st) just specifically for index values of the start of each duplicate run.
+
+To save on space, we can also use an in-place stack approach for the char array (SC) formed from the input string (S), rather than using a separate stack. To do so, we can use a two-pointer system in which one pointer (i) keeps track of the end of the in-place "stack", while the other pointer (j) iterates through SC normally.
+
+As we move j through SC, we write to the "stack" by overwriting SC[i] with SC[j]. When we want to remove K elements from the "stack", we just move i back by K. Then, once we're done, we can return the "stack", which is the first part of SC through i.
+
+This solution has more overhead, but won't repeat as many iterations, so it should be more efficient for longer strings.
+
+In-place stack example: S = "aabbbcdddcc", K = 3
+
+         i,j                             // i, j start at 1
+S  = [ a, A, b, b, b, c, d, d, d, c, c ] // S[j] overwrites S[i]
+st = [ 0 ]                               // S[i] == S[i-1], no change
+
+
+          ->i,j                          // i, j move up 1
+S  = [ a, a, B, b, b, c, d, d, d, c, c ] // S[j] overwrites S[i]
+st = [ 0, 2 ]                            // S[i] != S[i-1], st.push(i)
+
+
+             ->i,j                       // i, j move up 1
+S  = [ a, a, b, B, b, c, d, d, d, c, c ] // S[j] overwrites S[i]
+st = [ 0, 2 ]                            // S[i] == S[i-1], no change
+
+
+                ->i,j                    // i, j move up 1
+S  = [ a, a, b, b, B, c, d, d, d, c, c ] // S[j] overwrites S[i]
+st = [ 0, 2 ]                            // S[i] == S[i-1], no change
+
+
+          i<-------j                     // i moves back because...
+S  = [ a, a, B--B--B, c, d, d, d, c, c ] // ...3 b's found, so...
+st = [ 0 ]                               // ...i = st.pop() - 1
+
+
+           ->i      ->j                  // i, j move up 1
+S  = [ a, a, C<-------C, d, d, d, c, c ] // S[j] overwrites S[i]
+st = [ 0, 2 ]                            // new letter, st.push(i)
+
+
+              ->i      ->j               // i, j move up 1
+S  = [ a, a, c, D<-------D, d, d, c, c ] // S[j] overwrites S[i]
+st = [ 0, 2, 3 ]                         // new letter, st.push(i)
+
+
+                 ->i      ->j            // i, j move up 1
+S  = [ a, a, c, d, D<-------D, d, c, c ] // S[j] overwrites S[i]
+st = [ 0, 2, 3 ]                         // S[i] == S[i-1], no change
+
+
+                    ->i      ->j         // i, j move up 1
+S  = [ a, a, c, d, d, D<-------D, c, c ] // S[j] overwrites S[i]
+st = [ 0, 2, 3 ]                         // S[i] == S[i-1], no change
+
+
+             i<--------        j         // i moves back because...
+S  = [ a, a, c, D--D--D,  ,  ,  , c, c ] // ...3 d's found, so...
+st = [ 0, 2 ]                            // ...i = st.pop() - 1
+
+
+              ->i               ->j      // i, j move up 1
+S  = [ a, a, c, C<----------------C, c ] // S[j] overwrites S[i]
+st = [ 0, 2 ]                            // S[i] == S[i-1], no change
+
+
+                 ->i               ->j   // i, j move up 1
+S  = [ a, a, c, c, C<----------------C ] // S[j] overwrites S[i]
+st = [ 0, 2 ]                            // S[i] == S[i-1], no change
+
+
+          i<--------                 j   // i moves back because...
+S  = [ a, a, C--C--C,  ,  ,  ,  ,  ,   ] // ...3 c's found, so...
+st = [ 0 ]                               // ...i = st.pop() - 1
+
+
+S  = [ a, a ]                            // only keep S up to i
+   = "aa"                                // then join to a string
+#######################################
+
+Python Code:
+w/ Recursion:
+The best result for the code below is 96ms / 14.9MB (beats 29% / 94%).
+############################################
+
+class Solution:
+    def removeDuplicates(self, S: str, K: int) -> str:
+        count, i = 1, 1
+        while i < len(S):
+            if S[i] == S[i-1]: count += 1
+            else: count = 1
+            if count == K: S = self.removeDuplicates(S[:i-K+1] + S[i+1:], K)
+            i += 1
+        return S
+
+############################################
+w/ In-Place Stack:
+The best result for the code below is 76ms / 15.3MB (beats 63% / 73%).
+############################################
+class Solution:
+    def removeDuplicates(self, S: str, K: int) -> str:
+        SC, st, i, j = list(S), [0], 1, 1
+        while j < len(S):
+            SC[i] = SC[j]
+            if i == 0 or SC[i] != SC[i-1]: st.append(i)
+            elif i - st[-1] + 1 == K: i = st.pop() - 1
+            i += 1
+            j += 1
+        return "".join(SC[:i])
+
+
+############################################
+Java Code:
+w/ Recursion:
+The best result for the code below is 2ms / 39.2MB (beats 99% / 62%).
+############################################
+class Solution {
+    public String removeDuplicates(String S, int K) {
+        for (int i = 1, count = 1; i < S.length(); i++) {
+            count = S.charAt(i) == S.charAt(i-1) ? count + 1 : 1;
+            if (count == K) 
+                S = removeDuplicates(S.substring(0, i-K+1) + S.substring(i+1), K);
+        }
+        return S;
+    }
+}
+############################################
+w/ In-Place Stack:
+The best result for the code below is 5ms / 38.6MB (beats 86% / 99%).
+############################################
+class Solution {
+    public String removeDuplicates(String S, int K) {
+        char[] SC = S.toCharArray();
+        int i, j;
+        Stack<Integer> st = new Stack<>();
+        st.add(0);
+        for (i = 1, j = 1; j < S.length(); i++, j++) {
+            char chr = SC[i] = SC[j];
+            if (i == 0 || chr != SC[i-1]) st.add(i);
+            else if (i - st.peek() + 1 == K) i = st.pop() - 1;
+        }
+        return new String(SC, 0, i);
+    }
+}

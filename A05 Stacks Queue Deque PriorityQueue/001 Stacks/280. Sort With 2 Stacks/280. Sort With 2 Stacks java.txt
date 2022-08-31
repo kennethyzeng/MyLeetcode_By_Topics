@@ -1,0 +1,18 @@
+void getSort(Stack<Integer> StkA){ 
+	Stack<Integer> stkB = new Stack<>(); 
+
+		int temp = min.integer
+		while( !stkA.isempty()){
+		 	int tmp = stkA.pop(); 
+			if stkB.isEmpty() || temp < stkB.peek() {
+				stkB.push(tmp); 
+			}else{
+				stkA.push(stkB.pop());
+			}
+		}
+		
+		while !stkB.isempty()
+			stkA.push(stkB.pop));
+	}
+}
+

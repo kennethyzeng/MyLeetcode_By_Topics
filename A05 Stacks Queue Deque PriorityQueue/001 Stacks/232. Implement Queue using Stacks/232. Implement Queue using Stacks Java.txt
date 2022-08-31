@@ -1,0 +1,74 @@
+#################################
+Approach: pop(), push(), peek(), empty
+Queue: LIFO (like people waiting on the bus line: input and output are different places)
+Stack: FIFO (like a bucket: input and output are at the same place)
+
+Silmiar: Queue and Stack have silmiar feature for push() and empty()
+difference: Peek() and pop()
+
+Solution: 
+1. create two stacks: input and output; input is store push() data which act like Queue's push(); output is for pop()
+2. when output stack is empty, it will push data from stack input if stack input is not empty.  
+   => which meant if output stack have any data if won't import anydata to mess up current data order
+***This idea is used at peek() method	
+
+    /** Get the front element. */
+    public int peek() {
+        if(output.empty())
+            while(!input.empty())
+               output.push(input.pop());
+        return output.peek();      
+        
+    }
+
+3.  For the pop(), the idea is simliar to peek. but instead of peek() the top element at output stack, it pop() from stack output 
+    to ahieve this, first call the peek() method since it already did push data at output stack; then return output.pop()
+
+#################################
+class MyQueue {
+
+    Stack<Integer> input = new Stack();
+    Stack<Integer> output = new Stack();
+    
+    /** Initialize your data structure here. */
+    /**public MyQueue() {
+           Stack<Integer> input = new Stack();
+            Stack<Integer> output = new Stack();               
+    }*/
+    
+    /** Push element x to the back of queue. */
+    public void push(int x) {
+        input.push(x);
+    }
+    
+    /** Removes the element from in front of queue and returns that element. */
+    public int pop() {
+        peek(); 		//call peek function
+        return output.pop();     //int pop() Removes the element from the front of the queue and returns it.
+        
+    }
+    
+    /** Get the front element. */
+    public int peek() {
+        if(output.empty())
+            while(!input.empty())
+               output.push(input.pop());
+        return output.peek();			###compare the with pop() return output.pop()
+        
+    }
+    
+    /** Returns whether the queue is empty. */
+    public boolean empty() {
+        return input.empty() && output.empty();
+        
+    }
+}
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * MyQueue obj = new MyQueue();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.peek();
+ * boolean param_4 = obj.empty();
+ */

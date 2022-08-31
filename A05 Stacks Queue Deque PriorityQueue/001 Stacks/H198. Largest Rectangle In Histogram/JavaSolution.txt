@@ -1,0 +1,88 @@
+########
+O(n) stack solution and explantion 
+https://www.geeksforgeeks.org/largest-rectangle-under-histogram/
+
+Two key points that I found helpful while understanding the solution:
+
+When a bar is popped, we calculate the area with the popped bar at index tp as shortest bar. Now we know the rectangle height is heights[tp], we just need rectangle width to calculate the area.
+How to determine rectangle width? The maximum width we can have here would be made of all connecting bars with height greater than or equal to heights[tp]. heights[s.peek() + 1] >= heights[tp] because the index on top of the stack right now s.peek() is the first index left of tp with height smaller than tp's height (if s.peek() was greater then it should have already been poped out of the stack). heights[i - 1] >= heights[tp] because index i is the first index right of tp with height smaller than tp's height (if i was greater then tp would have remained on the stack). Now we multiply height heights[tp] by width i - 1 - s.peek() to get the area.
+###############
+class Solution {
+    public int largestRectangleArea(int[] height) {
+    if (height == null || height.length == 0) {
+        return 0;
+    }
+    int[] lessFromLeft = new int[height.length]; // idx of the first bar the left that is lower than current
+    int[] lessFromRight = new int[height.length]; // idx of the first bar the right that is lower than current
+    lessFromRight[height.length - 1] = height.length;
+    lessFromLeft[0] = -1;
+
+    for (int i = 1; i < height.length; i++) {
+        int p = i - 1;
+
+        while (p >= 0 && height[p] >= height[i]) {
+            p = lessFromLeft[p];
+        }
+        lessFromLeft[i] = p;
+    }
+
+    for (int i = height.length - 2; i >= 0; i--) {
+        int p = i + 1;
+
+        while (p < height.length && height[p] >= height[i]) {
+            p = lessFromRight[p];
+        }
+        lessFromRight[i] = p;
+    }
+
+    int maxArea = 0;
+    for (int i = 0; i < height.length; i++) {
+        maxArea = Math.max(maxArea, height[i] * (lessFromRight[i] - lessFromLeft[i] - 1));
+    }
+
+    return maxArea;
+    }
+}
+
+
+
+######################
+class Solution {
+    /*
+    这个题的核心是要保持一个单调递增的stack，每次遇到比栈顶小的元素，pop掉最高的元素
+    此时最高的元素是局部最小的height，这里就需要利用当前i的index减去栈顶前一个元素的坐标
+    这样可以得到这个局部的width是多少。这样height*width就是局部最小的面积。
+    
+    如果当前的i仍然大于栈顶元素，继续进行pop，这样得到下一个局部最小值
+    
+    最后stack剩下的height index，就是全局下最小的index，因为比他们大的，都被pop掉了
+    所以直接pop stack，width就是总的len 减去他的index即可
+    
+    */
+    public int largestRectangleArea(int[] heights) {
+        if (heights == null || heights.length == 0)
+            return 0;
+        
+        Stack<Integer> stack = new Stack();
+        
+        int len = heights.length;
+        int maxArea = Integer.MIN_VALUE;
+        
+        for (int i=0;i<len;i++) {
+            
+            while (!stack.isEmpty() && heights[i] < heights[stack.peek()]) {
+                int partialMaxArea = heights[stack.pop()] * (i - (stack.isEmpty()?0:stack.peek()+1));
+                maxArea = Math.max(maxArea, partialMaxArea);
+            }
+            
+            stack.push(i);
+        }
+        
+        while (!stack.isEmpty()){
+            int partialMaxArea = heights[stack.pop()] * (len - (stack.isEmpty()?0:stack.peek()+1));
+            maxArea = Math.max(maxArea, partialMaxArea);
+        }
+        
+        return maxArea;
+    }
+}

@@ -1,0 +1,40 @@
+#stack is list; when append and pop; it come with a pair (val, min_val) which val is val is pop or push value, min_val is tracking of min value 
+# every push, it will push the value; and tracking the minvalue, and input together as a pair 
+#self.stack[-1][1]  --> since stack is list. [-1] --> the value of last index; [1] -->because the input is a pair (val, min_val), 0 is val, 1 is min_val 
+# return self.stack[-1][1]  ###reurn the min_val each it call
+
+class MinStack:
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.stack = []
+
+    def push(self, val: int) -> None:
+        if not self.stack:
+            self.stack.append((val, val))
+        else: 
+            self.stack.append((val, min(val, self.stack[-1][1])))
+
+    def pop(self) -> None:
+        if self.stack:
+            self.stack.pop()
+        return None
+
+    def top(self) -> int:
+        if self.stack:
+            return self.stack[-1][0]
+        return None
+
+    def getMin(self) -> int:
+        if self.stack: 
+            return self.stack[-1][1]
+        return None
+
+# Your MinStack object will be instantiated and called as such:
+# obj = MinStack()
+# obj.push(val)
+# obj.pop()
+# param_3 = obj.top()
+# param_4 = obj.getMin()

@@ -1,0 +1,90 @@
+def largestRectangleArea(self, height):
+    height.append(0)
+    stack = [-1]
+    ans = 0
+    for i in xrange(len(height)):
+        while height[i] < height[stack[-1]]:
+            h = height[stack.pop()]
+            w = i - stack[-1] - 1
+            ans = max(ans, h * w)
+        stack.append(i)
+    height.pop()
+    return ans
+
+
+
+# 94 / 94 test cases passed.
+# Status: Accepted
+# Runtime: 76 ms
+# 97.34%
+
+#######################
+Python Divide & Conquer with comments O(NlogN)
+# Time: O(NlogN) as at level of recursion we go through N elements in total
+#                and recursion depth is logN, as we divide problem size by 2 at each step
+# Space: O(logN) for recursion tree
+
+class Solution:
+    def largestRectangleArea(self, heights: List[int]) -> int:
+        def merge(heights, low, mid, high):
+            """ Merges segments: A[low:mid], A[mid:high+1]
+                e.g. low = 2, high = 5
+                    0, 1, 2, 3, 4, 5
+                         |.  .| m  .|
+            """
+            left, right = mid, mid
+            current_height = heights[mid]
+            max_area = current_height
+            
+            while left >= low and right <= high:
+                
+                current_height = min(current_height, heights[left], heights[right])
+                max_area = max(max_area, current_height * (right - left + 1))
+                
+                # Some corner cases. If pointer in on the edge, move the other one
+                if left == low:
+                    right += 1
+                elif right == high:
+                    left -= 1
+                # If we can extend in both directions. Choose "less restricting" one
+                elif heights[left - 1] > heights[right + 1]:
+                    left -= 1
+                else:
+                    right += 1
+                    
+            return max_area
+        
+        def solve(heights, low, high):
+            if low == high:
+                return heights[low]
+            if low > high:
+                return 0
+            mid = (low + high) // 2
+            left = solve(heights, low, mid)
+            right = solve(heights, mid+1, high)
+            return max(left, right, merge(heights, low, mid, high))
+        
+        return solve(heights, 0, len(heights) - 1)
+"""
+Idea: Find solutions for the left subarray and the right subarray,
+Merge them, and find solution in merged subarray. 
+Return max
+
+D&C
+0. if len == 0 or 1 stop
+1. divide into left and right
+2. merge solutions
+
+a) solution for subproblem (biggest rectangle in this segment)
+
+Merge: # O(n) as we iterate over the whole "subarray". Total length on each level is O(n)
+Two pointers from the middle. 
+We compare height of the left and height of the right. When go where?
+if height.right > height.left:
+    right += 1
+else:
+    left -= 1
+We want to greedily go into the direction of the higher one, as it will constraint height less,
+allowing us to get higher size
+
+"""

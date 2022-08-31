@@ -1,0 +1,530 @@
+###############===========31. Queue By Two Stacks===========###############
+###############232. Implement Queue using Stacks @ Leetcode
+Java: Implement a queue by using two stacks. The queue should provide size(), isEmpty(), offer(), poll() and peek() operations. When the queue is empty, poll() and peek() should return null.
+
+C++: Implement a queue by using two stacks. The queue should provide size(), isEmpty(), push(), front() and pop() operations. When the queue is empty, front() should return -1.
+
+Assumptions
+
+The elements in the queue are all Integers.
+size() should return the number of elements buffered in the queue.
+isEmpty() should return true if there is no element buffered in the queue, false otherwise.
+
+
+###############===========32. Stack With min()===========###############
+Enhance the stack implementation to support min() operation. min() should return the current minimum value in the stack. If the stack is empty, min() should return -1.
+
+push(int element) - push the element to top
+pop() - return the top element and remove it, if the stack is empty, return -1
+top() - return the top element without remove it, if the stack is empty, return -1
+min() - return the current min value in the stack.
+
+
+###############===========82. Remove Adjacent Repeated Characters IV===========###############
+Repeatedly remove all adjacent, repeated characters in a given string from left to right.
+
+No adjacent characters should be identified in the final string.
+
+Examples
+
+"abbbaaccz" → "aaaccz" → "ccz" → "z"
+"aabccdc" → "bccdc" → "bdc"
+
+
+##########################=========================1209. Remove All Adjacent Duplicates in String II@leetcode===============##########
+You are given a string s and an integer k, a k duplicate removal consists of choosing k adjacent and equal letters from s and removing them, causing the left and the right side of the deleted substring to concatenate together.
+
+We repeatedly make k duplicate removals on s until we no longer can.
+
+Return the final string after all such duplicate removals have been made. It is guaranteed that the answer is unique.
+Example 1:
+
+Input: s = "abcd", k = 2
+Output: "abcd"
+Explanation: There's nothing to delete.
+Example 2:
+
+Input: s = "deeedbbcccbdaa", k = 3
+Output: "aa"
+Explanation: 
+First delete "eee" and "ccc", get "ddbbbdaa"
+Then delete "bbb", get "dddaa"
+Finally delete "ddd", get "aa"
+Example 3:
+
+Input: s = "pbbcggttciiippooaais", k = 2
+Output: "ps"
+###############===========118. Array Deduplication IV===========###############
+Given an unsorted integer array, remove adjacent duplicate elements repeatedly, from left to right. For each group of elements with the same value do not keep any of them.
+
+Do this in-place, using the left side of the original array. Return the array after deduplication.
+
+Assumptions
+
+The given array is not null
+Examples
+
+{1, 2, 3, 3, 3, 2, 2} → {1, 2, 2, 2} → {1}, return {1}
+
+
+###############===========198. Largest Rectangle In Histogram===========###############
+####################84. Largest Rectangle in Histogram @leetcode #####################
+Given a non-negative integer array representing the heights of a list of adjacent bars. Suppose each bar has a width of 1. Find the largest rectangular area that can be formed in the histogram.
+
+Assumptions
+
+The given array is not null or empty
+Examples
+
+{ 2, 1, 3, 3, 4 }, the largest rectangle area is 3 * 3 = 9(starting from index 2 and ending at index 4)
+
+ 
+###############===========279. Sort With 3 Stacks===========###############
+Given one stack with integers, sort it with two additional stacks (total 3 stacks). 
+
+After sorting the original stack should contain the sorted integers and from top to bottom the integers are sorted in ascending order.
+
+Assumptions:
+
+The given stack is not null.
+The time complexity should be O(n log n).
+
+###############===========280. Sort With 2 Stacks===========###############
+Given an array that is initially stored in one stack, sort it with one additional stacks (total 2 stacks).
+
+After sorting the original stack should contain the sorted integers and from top to bottom the integers are sorted in ascending order.
+
+Assumptions:
+
+The given stack is not null.
+There can be duplicated numbers in the give stack.
+Requirements:
+
+No additional memory, time complexity = O(n ^ 2).
+
+###############===========634. Stack by Queue(s)===========###############
+Implement a stack containing integers using queue(s). The stack should provide push(x), pop(), top() and isEmpty() operations.
+
+In java: if the stack is empty, then top() and pop() will return null.
+
+In Python: if the stack is empty, then top() and pop() will return None.
+
+In C++:  if the stack is empty, then top() and pop() will return nullptr.
+
+
+###############===========645. Deque By Three Stacks===========###############
+Java: Implement a deque by using three stacks. The queue should provide size(), isEmpty(), offerFirst(), offerLast(), pollFirst(), pollLast(), peekFirst() and peekLast() operations. When the queue is empty, pollFirst(), pollLast(), peekFirst() and peek() should return null.
+
+
+
+Python: Implement a deque by using three stacks. The queue should provide size(), isEmpty(), offerFirst(), offerLast(), pollFirst(), pollLast(), peekFirst() and peekLast() operations. When the queue is empty, pollFirst(), pollLast(), peekFirst() and peek() should return None
+
+
+C++: Implement a deque by using three stacks. The queue should provide size(), isEmpty(), push_front(), push_back(), pop_front(), pop_back(), front() and back() operations. When the queue is empty, front() and back() should return -1.
+
+
+########################################################################################################
+###############===========8. Evaluate Reverse Polish Notation===========###############
+###################150. Evaluate Reverse Polish Notation======================
+Evaluate the value of an arithmetic expression in Reverse Polish Notation.
+
+Assumption
+
+Valid operators are +, -, *, /.
+Each operand may be an integer or another expression.
+
+Examples
+
+["2", "1", "+", "3", "*"] -> ((2 + 1) * 3) -> 9
+["4", "13", "5", "/", "+"] -> (4 + (13 / 5)) -> 6
+
+###############===========102. Largest Rectangle Of 1s===========###############
+#####################85. Maximal Rectangle########################
+Determine the largest rectangle of 1s in a binary matrix (a binary matrix only contains 0 and 1), return the area.
+
+Assumptions
+
+The given matrix is not null and has size of M * N, M >= 0 and N >= 0
+Examples
+
+{ {0, 0, 0, 0},
+
+  {1, 1, 1, 1},
+
+  {0, 1, 1, 1},
+
+  {1, 0, 1, 1} }
+
+the largest rectangle of 1s has area of 2 * 3 = 6
+
+
+###############===========159. Simplify Path===========###############
+##############71. Simplify Path
+Given an absolute path for a file (Unix-style), simplify it.
+
+Input: path = “/home/”    
+
+Output: “/home”    
+
+Input: path = “/a/./b/../../c/”
+
+Output: “/c”
+
+
+###############===========237. Longest Valid Parentheses===========###############
+Given a string containing just the characters '(' and ')', find the length of the longest valid (well-formed) parentheses substring.  
+
+Example
+
+")()())", where the longest valid parentheses substring is "()()", which has length = 4.
+
+###############===========242. Valid Parenthese===========###############
+Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid. The brackets must close in the correct order.
+
+Examples
+
+"()" and "()[]{}", "[{()}()]" are all valid but "(]" and "([)]" are not.
+
+###############===========370. Evaluate Suffix Expression===========###############
+Evaluate suffix expression, the expression is represented by an String array. The elements in the array are either an integer or "+", "-", "*", "/"
+
+Assumptions:
+
+The expression array is not null and it is guaranteed to be a valid infix expression.
+Examples:
+
+{"2", "12", "4", "+", "*"} --> 2 * (12 + 4) = 32
+
+###############===========428. Remove Duplicate Letters===========##leetcod 316#############google, fac4ebok , apple, amazon, neflix 
+Given a string which contains only lowercase letters, remove duplicate letters so that every letter appear once and only once. You must make sure your result is the smallest in lexicographical order among all possible results.
+
+Example:
+
+Given "bcabc"
+Return "abc"
+
+Given "cbacdcbc"
+Return "acdb"
+###############===========448. Basic Calculator===========###############
+Implement a basic calculator to evaluate a simple expression string.
+
+The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negative integers and empty spaces .
+
+You may assume that the given expression is always valid.
+
+Some examples:
+
+"1 + 1" = 2
+" 2-1 + 2 " = 3
+"(1+(4+5+2)-3)+(6+8)" = 23
+Note: Do not use the eval built-in library function
+###############===========475. Different Ways to Add Parentheses===========###############
+Given a string of numbers and operators, return all possible results from computing all the different possible ways to group numbers and operators in Ascending order. The valid operators are +, - and *.
+
+
+Example 1
+
+Input: "2-1-1".
+
+((2-1)-1) = 0
+(2-(1-1)) = 2
+Output: [0, 2]
+
+
+Example 2
+
+Input: "2\*3-4\*5"
+
+(2*(3-(4*5))) = -34
+((2*3)-(4*5)) = -14
+((2*(3-4))*5) = -10
+(2*((3-4)*5)) = -10
+(((2*3)-4)*5) = 10
+Output: [-34, -14, -10, -10, 10]
+
+###############===========516. Nested List Weight Sum===========###############
+Given a nested list of integers represented by a string without blank, parse the string and  return the sum of all integers in the list weighted by their depth.
+
+Each element is either an integer, or a list -- whose elements may also be integers or other lists.
+
+Example 1:
+Given the list "[[1,1],2,[1,1]]", return 10. (four 1's at depth 2, one 2 at depth 1)
+
+Example 2:
+Given the list "[1,[4,[6]]]", return 27. (one 1 at depth 1, one 4 at depth 2, and one 6 at depth 3; 1 + 4*2 + 6*3 = 27)
+###############===========522. Trapping Rain Water===========###############
+
+Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
+
+For example, 
+Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.
+
+
+
+The above elevation map is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped. Thanks Marcos for contributing this image!
+
+###############===========552. Sum of Numbers in a Stack===========###############
+Calculate the sum of all numbers in a Stack.
+
+Assumption: The Stack is not null or empty.
+
+
+
+Example: 
+
+Stack contains 7,5,3,0
+
+Answer: 15
+
+###############===========553. Shuffle Stacks===========###############
+Given a stack of numbers, shuffle all numbers into another Stack so that the order is reversed.
+
+Assumption: the stack is not null or empty.
+
+
+
+Example:
+
+    
+
+stack1 = [8,4,6,1]  stack2 = []
+
+
+
+After shuffle:
+
+stack1 = [], stack2 = [1, 6, 4, 8]
+###############===========588. Distance to the First Greater Number===========###############
+Given an array of integers, for each integer, find the first number on its right that is greater than it. Record the distance between these two numbers. Here distance means the absolute value of the difference between the indexes of the two numbers.
+
+ 
+
+Example 1:
+
+Input: nums =[5,6,7,3,2,4,8,1]
+
+Output: [1,1,4,2,1,1,0,0]
+
+Assumptions:
+
+The given array is not null.
+The length of given array is no more than 30000.
+###############===========589. Number Crashes===========###############
+Suppose you are given an array of integers. Positive numbers could move to the right, and negative numbers could move to the left. Numbers moving to the same direction will never meet. When two numbers moving oppositely crash into each other, the one with smaller absolute value will disappear. If the two numbers are equal, then both of them will disappear.
+
+Return the remaining numbers survive till the last.
+
+ 
+
+Example 1:
+
+Input: nums =[13,-13]
+
+Output: []
+
+Explanation: the two numbers crash into each other and both disappear because their absolute value are equal.
+
+Example 2:
+
+Input: [-1,1]
+
+Output: [-1,1]
+
+Explanation: -1 moves to the left and 1 moves to the right so that they will never meet each other.
+
+Example 3:
+
+Input: [-1,1,2,-1]
+
+Output: [-1,1,2]
+
+Explanation: 2 and the second -1 crash into each other and -1 disappears, so only [-1,1,2] survive.
+
+Assumptions:
+
+The given array is not null.
+The length of given array is no more than 10000.
+
+###############===========615. Validate Stack Sequences===========###############
+Given two sequences pushed and popped with distinct values, return true if and only if this could have been the result of a sequence of push and pop operations on an initially empty stack.
+
+ 
+
+Example 1:
+
+Input: pushed = [1,2,3,4,5], popped = [4,5,3,2,1]
+Output: true
+Explanation: We might do the following sequence:
+push(1), push(2), push(3), push(4), pop() -> 4,
+push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
+Example 2:
+
+Input: pushed = [1,2,3,4,5], popped = [4,3,5,1,2]
+Output: false
+Explanation: 1 cannot be popped before 2.
+ 
+
+Note:
+
+0 <= pushed.length == popped.length <= 1000
+0 <= pushed[i], popped[i] < 1000
+pushed is a permutation of popped.
+pushed and popped have distinct values
+###############===========616. Decode String===========###############
+Given an encoded string, return it's decoded string.
+
+The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times. Note that k is guaranteed to be a positive integer.
+
+You may assume that the input string is always valid; No extra white spaces, square brackets are well-formed, etc.
+
+Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, k. For example, there won't be input like 3a or 2[4].
+
+Examples:
+
+s = "3[a]2[bc]", return "aaabcbc".
+s = "3[a2[c]]", return "accaccacc".
+s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
+###############===========621. Decompress String III===========###############
+Given a encoded string that compressed according to the following rules:
+
+N[inner_pattern] -> N is a positive integer and the inner pattern will be repeated N times.
+
+Decompress the encoded string and return the original string.
+
+Assumptions:
+
+N is alway positive integer.
+The input is always valid, i.e. the brackets are always in pair.
+The decompressed string (that is the return value) doesn't contain digit or brackets, which means digit, '[' and ']' are only used in encoded (compressed) string.
+ 
+
+Example 1:
+
+Input: "abc"
+
+Output: "abc"
+
+Example 2:
+
+Input: "ab3[cd[2e]]f"
+
+Output: "abcdeecdeecdeef"
+###############===========629. Execution Time of Functions===========###############
+Suppose there is a single-threaded CPU that could run only one function each time. We store execution logs in time order that describe jobs starting or ending. Each log is formatted as {function_id}:{"start"}:{timestamp} or {function_id}:{"end"}:{timestamp}
+
+For example, "0:start:1" means function 0 starts at timestamp 1; "0:end:2" means function 0 ends at timestamp 2.
+
+The duration of a function is the total number of time units that the single-threaded CPU spends on running the function.
+
+Given an integer n and a list of execution logs, suppose we have n functions with id of 0 to n - 1, return the duration of each job in the order of job id.
+
+
+
+Example:
+
+Input: 3, ["0:start:0","1:start:2","1:end:5","2:start:6","2:end:6", "0:end:7"]
+
+Output: [3,4,1]
+
+Explanation: the function running in each time unit is:
+
+time unit     |    function
+
+0            |    function 0 (start)
+
+1            |    function 0
+
+2            |    function 1 (start)
+
+3            |    function 1
+
+4            |    function 1
+
+5            |    function 1 (end)
+
+6            |    function 2 (start and end)
+
+7            |    function 0 (end)
+
+
+
+There are three functions (0, 1, 2). Function 0 runs 3 time units (0, 1, 7). Function 1 runs 4 time units(2,3,4,5). Function 2 runs 1 time unit(6), so the return value is [3, 4, 1].
+###############===========675. Maximum Binary Tree===========###############
+Given an integer array, build a binary tree following the rules below:
+
+1. The root node is the maximum value in the array.
+
+2. The left sub-tree contains all values on the left of the root value in the given array.
+
+3. The right sub-tree contains all values on the right of the root value in the given array.
+
+4. All tree nodes follow the rules above.
+
+You may assume that there is no duplicate value in the given array.
+
+Example:
+
+Input: [2,1,6,3]
+
+Output: 
+
+          6
+
+       /     \
+
+     2        3
+
+        \
+
+          1
+###############===========678. Next Greater Number I===========###############
+Given two integer arrays all and partial without duplicate numbers, array partial is subset of array all. For each number in partial, find the first number on its right in all that greater than it. If no such number existed, then assign the result to -1.
+
+Example 1: 
+
+Input: all = [3,4,1,2]    partial = [4,1,2]
+
+Output: [-1, 2, -1]
+
+Example 2:
+
+Input: all = [1, 2, 3, 4] partial = [4,1,2]
+
+Output: [-1, 2, 3] 
+###############===========679. Next Greater Number II===========###############
+Given a circular integer array,  find the next greater element of each element in it. If no such an element then give it -1.
+
+The circular array is represented by a general array, and you should assume that the next element of the last element is the first element.
+
+Return the results as an integer array and the order of the elements should be consistent with the given array.
+
+Example:
+
+Input: nums = [4,2,1,3]
+
+Output: [-1, 3, 3, 4]
+
+Explanation: the given circular array is [4,2,1,3,4,2,1,3......]. 4 is the largest element so the next greater element does not exist, then we give it -1. The next greater element of 2, and 1 is 3. The next greater element of 3 is 4.
+###############===========680. Next Greater Number III===========###############
+Given an integer n, find the smallest integer that is larger than n and consists the same digits as n. If there is no such result, or the result is larger than the max value of 32-bit integer, then return -1.
+
+Example 1:
+
+Input: 1
+
+Output: -1
+
+Example 2:
+
+Input: 12
+
+Output: 21
+###############===========737. [Debug] Stack With min()===========###############
+There are bugs in the given code, please fix them.
+
+Enhance the stack implementation to support min() operation. min() should return the current minimum value in the stack. If the stack is empty, min() should return -1.
+
+push(int element) - push the element to top
+pop() - return the top element and remove it, if the stack is empty, return -1
+top() - return the top element without remove it, if the stack is empty, return -1
+min() - return the current min value in the stack.

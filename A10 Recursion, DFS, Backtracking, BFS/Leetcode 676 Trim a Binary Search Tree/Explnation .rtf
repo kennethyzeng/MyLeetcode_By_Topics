@@ -1,0 +1,63 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red12\green90\blue1;\red245\green247\blue249;\red29\green38\blue42;
+\red151\green0\blue126;\red73\green17\blue135;\red20\green0\blue196;\red181\green0\blue19;}
+{\*\expandedcolortbl;;\cssrgb\c0\c41569\c0;\cssrgb\c96863\c97647\c98039;\cssrgb\c14902\c19608\c21961;
+\cssrgb\c66667\c5098\c56863;\cssrgb\c36078\c14902\c60000;\cssrgb\c10980\c0\c81176;\cssrgb\c76863\c10196\c8627;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f0\fs26 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 # Definition for a binary tree node.\cf4 \strokec4 \
+\cf2 \strokec2 # class TreeNode:\cf4 \strokec4 \
+\cf2 \strokec2 #     def __init__(self, x):\cf4 \strokec4 \
+\cf2 \strokec2 #         self.val = x\cf4 \strokec4 \
+\cf2 \strokec2 #         self.left = None\cf4 \strokec4 \
+\cf2 \strokec2 #         self.right = None\cf4 \strokec4 \
+\
+\pard\pardeftab720\sl400\partightenfactor0
+\cf5 \strokec5 class\cf4 \strokec4  \cf6 \strokec6 Solution\cf4 \strokec4 :\
+    \cf5 \strokec5 def\cf4 \strokec4  \cf7 \strokec7 deleteNode\cf4 \strokec4 (\cf6 \strokec6 self, root, key\cf4 \strokec4 ):\
+        \cf8 \strokec8 """\
+        :type root: TreeNode\
+        :type key: int\
+        :rtype: TreeNode\
+        """\cf4 \strokec4 \
+        \cf5 \strokec5 if\cf4 \strokec4  \cf5 \strokec5 not\cf4 \strokec4  root:\
+            \cf5 \strokec5 return\cf4 \strokec4 \
+        \
+        \cf2 \strokec2 # we always want to delete the node when it is the root of a subtree,\cf4 \strokec4 \
+        \cf2 \strokec2 # so we handle left or right according to the val.\cf4 \strokec4 \
+        \cf2 \strokec2 # if the node does not exist, we will hit the very first if statement and return None.\cf4 \strokec4 \
+        \cf5 \strokec5 if\cf4 \strokec4  key > root.val:\
+            root.right = self.deleteNode(root.right, key)\
+            \
+        \cf5 \strokec5 elif\cf4 \strokec4  key < root.val:\
+            root.left = self.deleteNode(root.left, key)\
+        \
+        \cf2 \strokec2 # now the key is the root of a subtree\cf4 \strokec4 \
+        \cf5 \strokec5 else\cf4 \strokec4 :\
+            \cf2 \strokec2 # if the subtree does not have a left child, we just return its right child\cf4 \strokec4 \
+            \cf2 \strokec2 # to its father, and they will be connected on the higher level recursion.\cf4 \strokec4 \
+            \cf5 \strokec5 if\cf4 \strokec4  \cf5 \strokec5 not\cf4 \strokec4  root.left:\
+                \cf5 \strokec5 return\cf4 \strokec4  root.right\
+            \
+            \cf2 \strokec2 # if it has a left child, we want to find the max val on the left subtree to \cf4 \strokec4 \
+            \cf2 \strokec2 # replace the node we want to delete.\cf4 \strokec4 \
+            \cf5 \strokec5 else\cf4 \strokec4 :\
+                \cf2 \strokec2 # try to find the max value on the left subtree\cf4 \strokec4 \
+                tmp = root.left\
+                \cf5 \strokec5 while\cf4 \strokec4  tmp.right:\
+                    tmp = tmp.right\
+                    \
+                \cf2 \strokec2 # replace\cf4 \strokec4 \
+                root.val = tmp.val\
+                \
+                \cf2 \strokec2 # since we have replaced the node we want to delete with the tmp, now we don't\cf4 \strokec4 \
+                \cf2 \strokec2 # want to keep the tmp on this tree, so we just use our function to delete it.\cf4 \strokec4 \
+                \cf2 \strokec2 # pass the val of tmp to the left subtree and repeat the whole approach.\cf4 \strokec4 \
+                root.left = self.deleteNode(root.left, tmp.val)\
+        \
+        \cf5 \strokec5 return\cf4 \strokec4  root\
+}

@@ -1,0 +1,48 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2580
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red29\green38\blue42;\red245\green247\blue249;\red20\green0\blue196;
+\red181\green0\blue19;\red151\green0\blue126;}
+{\*\expandedcolortbl;;\cssrgb\c14902\c19608\c21961;\cssrgb\c96863\c97647\c98039;\cssrgb\c10980\c0\c81176;
+\cssrgb\c76863\c10196\c8627;\cssrgb\c66667\c5098\c56863;}
+\vieww12000\viewh15840\viewkind0
+\deftab720
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+
+\f0\fs22 \cf0 ###############################Link###########################################\
+https://leetcode.com/discuss/interview-question/678206/Amazon-or-Phone-or-Logged-in-Customers\
+################################Approach######################################\
+###############################Algorithms######################################\
+\
+################################Other###########################################\
+Problem about: \
+\pard\pardeftab720\sl416\partightenfactor0
+
+\f1\fs26 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Problem statement:\
+\
+There\cf4 \strokec4 's\cf2 \strokec2  a website \cf5 \strokec5 "Amazon.com"\cf2 \strokec2 .\
+When a customer logs-\cf6 \strokec6 in\cf2 \strokec2  on Amazon.com, a new line \cf5 \strokec5 "<customerId>,<timestamp>"\cf2 \strokec2  is added to a log file and saved on a disk, \cf6 \strokec6 for\cf2 \strokec2  example:\
+\
+\pard\pardeftab720\sl416\partightenfactor0
+\cf5 \strokec5 """\
+1,1590529992\
+100,1590529993\
+1,1590529994\
+2,1590529995\
+"""\cf2 \strokec2 \
+\
+One log file has entries \cf6 \strokec6 for\cf2 \strokec2  only \cf4 \strokec4 1\cf2 \strokec2  hour.\
+\
+Log files are stored \cf6 \strokec6 in\cf2 \strokec2  directories - \cf4 \strokec4 24\cf2 \strokec2  log files per directory:\
+/logs/\cf4 \strokec4 2018\cf2 \strokec2 -\cf4 \strokec4 01\cf2 \strokec2 -\cf4 \strokec4 01\cf2 \strokec2 /\
+    \cf4 \strokec4 2018\cf2 \strokec2 -\cf4 \strokec4 01\cf2 \strokec2 -\cf4 \strokec4 01\cf2 \strokec2 -\cf4 \strokec4 00\cf2 \strokec2 :\cf4 \strokec4 00\cf2 \strokec2 .log ()\
+    \cf4 \strokec4 2018\cf2 \strokec2 -\cf4 \strokec4 01\cf2 \strokec2 -\cf4 \strokec4 01\cf2 \strokec2 -\cf4 \strokec4 01\cf2 \strokec2 :\cf4 \strokec4 00\cf2 \strokec2 .log\
+    \cf4 \strokec4 2018\cf2 \strokec2 -\cf4 \strokec4 01\cf2 \strokec2 -\cf4 \strokec4 01\cf2 \strokec2 -\cf4 \strokec4 02\cf2 \strokec2 :\cf4 \strokec4 00\cf2 \strokec2 .log\
+    ...\
+    \cf4 \strokec4 2018\cf2 \strokec2 -\cf4 \strokec4 01\cf2 \strokec2 -\cf4 \strokec4 01\cf2 \strokec2 -\cf4 \strokec4 23\cf2 \strokec2 :\cf4 \strokec4 00\cf2 \strokec2 .log\
+/logs/\cf4 \strokec4 2018\cf2 \strokec2 -\cf4 \strokec4 01\cf2 \strokec2 -\cf4 \strokec4 02\cf2 \strokec2 /\
+    ...\
+\
+\
+Write a method to find customers who logged-\cf6 \strokec6 in\cf2 \strokec2  on Amazon.com \cf5 \strokec5 "X"\cf2 \strokec2  times (\cf4 \strokec4 2\cf2 \strokec2 , \cf4 \strokec4 14\cf2 \strokec2  or any other number of times) \cf6 \strokec6 for\cf2 \strokec2  the past \cf4 \strokec4 24\cf2 \strokec2  hours.\
+}

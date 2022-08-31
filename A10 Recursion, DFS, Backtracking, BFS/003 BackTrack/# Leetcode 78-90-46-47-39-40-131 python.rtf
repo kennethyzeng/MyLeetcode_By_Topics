@@ -1,0 +1,140 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Medium;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red151\green0\blue126;
+\red245\green247\blue249;\red29\green38\blue42;\red20\green0\blue196;\red73\green17\blue135;\red12\green90\blue1;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0\c85098;\cssrgb\c100000\c100000\c100000;\cssrgb\c66667\c5098\c56863;
+\cssrgb\c96863\c97647\c98039;\cssrgb\c14902\c19608\c21961;\cssrgb\c10980\c0\c81176;\cssrgb\c36078\c14902\c60000;\cssrgb\c0\c41569\c0;
+}
+\margl1440\margr1440\vieww25100\viewh13280\viewkind0
+\deftab720
+\pard\pardeftab720\sa140\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Combinations :\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs26 \cf4 \cb5 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 combine\cf8 \strokec8 (\cf4 \strokec4 self\cf8 \strokec8 , n, k)\cf6 \strokec6 :\
+    res = []\
+    \cf4 \strokec4 self\cf6 \strokec6 .dfs(xrange(\cf7 \strokec7 1\cf6 \strokec6 ,n+\cf7 \strokec7 1\cf6 \strokec6 ), k, \cf7 \strokec7 0\cf6 \strokec6 , [], res)\
+    \cf4 \strokec4 return\cf6 \strokec6  res\
+    \
+\cf4 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 dfs\cf8 \strokec8 (\cf4 \strokec4 self\cf8 \strokec8 , nums, k, index, path, res)\cf6 \strokec6 :\
+    \cf9 \strokec9 #if k < 0:  #backtracking\cf6 \strokec6 \
+        \cf9 \strokec9 #return \cf6 \strokec6 \
+    \cf4 \strokec4 if\cf6 \strokec6  k == \cf7 \strokec7 0\cf6 \strokec6 :\
+        res.append(path)\
+        \cf4 \strokec4 return\cf6 \strokec6  \cf9 \strokec9 # backtracking \cf6 \strokec6 \
+    \cf4 \strokec4 for\cf6 \strokec6  i \cf4 \strokec4 in\cf6 \strokec6  xrange(index, len(nums)):\
+        \cf4 \strokec4 self\cf6 \strokec6 .dfs(nums, k-\cf7 \strokec7 1\cf6 \strokec6 , i+\cf7 \strokec7 1\cf6 \strokec6 , path+[nums[i]], res)\
+\pard\pardeftab720\sa140\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \strokec2 Permutations I\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs26 \cf4 \cb5 \strokec4 class\cf6 \strokec6  \cf8 \strokec8 Solution\cf6 \strokec6 :\
+    \cf4 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 permute\cf6 \strokec6 (\cf8 \strokec8 self, nums: List[int]\cf6 \strokec6 ) -> List[List[int]]:\
+        res = []\
+        self.dfs(nums, [], res)\
+        \cf4 \strokec4 return\cf6 \strokec6  res\
+\
+    \cf4 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 dfs\cf6 \strokec6 (\cf8 \strokec8 self, nums, path, res\cf6 \strokec6 ):\
+        \cf4 \strokec4 if\cf6 \strokec6  \cf4 \strokec4 not\cf6 \strokec6  nums:\
+            res.append(path)\
+            \cf9 \strokec9 #return # backtracking\cf6 \strokec6 \
+        \cf4 \strokec4 for\cf6 \strokec6  i \cf4 \strokec4 in\cf6 \strokec6  \cf8 \strokec8 range\cf6 \strokec6 (\cf8 \strokec8 len\cf6 \strokec6 (nums)):\
+            self.dfs(nums[:i]+nums[i+\cf7 \strokec7 1\cf6 \strokec6 :], path+[nums[i]], res)\
+\pard\pardeftab720\sa140\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \strokec2 Permutations II\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs26 \cf4 \cb5 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 permuteUnique\cf6 \strokec6 (\cf8 \strokec8 self, nums\cf6 \strokec6 ):\
+    res, visited = [], [\cf4 \strokec4 False\cf6 \strokec6 ]*\cf8 \strokec8 len\cf6 \strokec6 (nums)\
+    nums.sort()\
+    self.dfs(nums, visited, [], res)\
+    \cf4 \strokec4 return\cf6 \strokec6  res\
+    \
+\cf4 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 dfs\cf6 \strokec6 (\cf8 \strokec8 self, nums, visited, path, res\cf6 \strokec6 ):\
+    \cf4 \strokec4 if\cf6 \strokec6  \cf8 \strokec8 len\cf6 \strokec6 (nums) == \cf8 \strokec8 len\cf6 \strokec6 (path):\
+        res.append(path)\
+        \cf4 \strokec4 return\cf6 \strokec6  \
+    \cf4 \strokec4 for\cf6 \strokec6  i \cf4 \strokec4 in\cf6 \strokec6  xrange(\cf8 \strokec8 len\cf6 \strokec6 (nums)):\
+        \cf4 \strokec4 if\cf6 \strokec6  \cf4 \strokec4 not\cf6 \strokec6  visited[i]: \
+            \cf4 \strokec4 if\cf6 \strokec6  i>\cf7 \strokec7 0\cf6 \strokec6  \cf4 \strokec4 and\cf6 \strokec6  \cf4 \strokec4 not\cf6 \strokec6  visited[i-\cf7 \strokec7 1\cf6 \strokec6 ] \cf4 \strokec4 and\cf6 \strokec6  nums[i] == nums[i-\cf7 \strokec7 1\cf6 \strokec6 ]:  \cf9 \strokec9 # here should pay attention\cf6 \strokec6 \
+                \cf4 \strokec4 continue\cf6 \strokec6 \
+            visited[i] = \cf4 \strokec4 True\cf6 \strokec6 \
+            self.dfs(nums, visited, path+[nums[i]], res)\
+            visited[i] = \cf4 \strokec4 False\cf6 \strokec6 \
+\pard\pardeftab720\sa140\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \strokec2 Subsets 1\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs26 \cf4 \cb5 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 subsets1\cf6 \strokec6 (\cf8 \strokec8 self, nums\cf6 \strokec6 ):\
+    res = []\
+    self.dfs(\cf8 \strokec8 sorted\cf6 \strokec6 (nums), \cf7 \strokec7 0\cf6 \strokec6 , [], res)\
+    \cf4 \strokec4 return\cf6 \strokec6  res\
+    \
+\cf4 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 dfs\cf6 \strokec6 (\cf8 \strokec8 self, nums, index, path, res\cf6 \strokec6 ):\
+    res.append(path)\
+    \cf4 \strokec4 for\cf6 \strokec6  i \cf4 \strokec4 in\cf6 \strokec6  xrange(index, \cf8 \strokec8 len\cf6 \strokec6 (nums)):\
+        self.dfs(nums, i+\cf7 \strokec7 1\cf6 \strokec6 , path+[nums[i]], res)\
+\pard\pardeftab720\sa140\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \strokec2 Subsets II\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs26 \cf4 \cb5 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 subsetsWithDup\cf6 \strokec6 (\cf8 \strokec8 self, nums\cf6 \strokec6 ):\
+    res = []\
+    nums.sort()\
+    self.dfs(nums, \cf7 \strokec7 0\cf6 \strokec6 , [], res)\
+    \cf4 \strokec4 return\cf6 \strokec6  res\
+    \
+\cf4 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 dfs\cf6 \strokec6 (\cf8 \strokec8 self, nums, index, path, res\cf6 \strokec6 ):\
+    res.append(path)\
+    \cf4 \strokec4 for\cf6 \strokec6  i \cf4 \strokec4 in\cf6 \strokec6  xrange(index, \cf8 \strokec8 len\cf6 \strokec6 (nums)):\
+        \cf4 \strokec4 if\cf6 \strokec6  i > index \cf4 \strokec4 and\cf6 \strokec6  nums[i] == nums[i-\cf7 \strokec7 1\cf6 \strokec6 ]:\
+            \cf4 \strokec4 continue\cf6 \strokec6 \
+        self.dfs(nums, i+\cf7 \strokec7 1\cf6 \strokec6 , path+[nums[i]], res)\
+\pard\pardeftab720\sa140\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \strokec2 Combination Sum\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs26 \cf4 \cb5 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 combinationSum\cf8 \strokec8 (\cf4 \strokec4 self\cf8 \strokec8 , candidates, target)\cf6 \strokec6 :\
+    res = []\
+    candidates.sort()\
+    \cf4 \strokec4 self\cf6 \strokec6 .dfs(candidates, target, \cf7 \strokec7 0\cf6 \strokec6 , [], res)\
+    \cf4 \strokec4 return\cf6 \strokec6  res\
+    \
+\cf4 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 dfs\cf8 \strokec8 (\cf4 \strokec4 self\cf8 \strokec8 , nums, target, index, path, res)\cf6 \strokec6 :\
+    \cf4 \strokec4 if\cf6 \strokec6  target < \cf7 \strokec7 0\cf6 \strokec6 :\
+        \cf4 \strokec4 return\cf6 \strokec6   \cf9 \strokec9 # backtracking\cf6 \strokec6 \
+    \cf4 \strokec4 if\cf6 \strokec6  target == \cf7 \strokec7 0\cf6 \strokec6 :\
+        res.append(path)\
+        \cf4 \strokec4 return\cf6 \strokec6  \
+    \cf4 \strokec4 for\cf6 \strokec6  i \cf4 \strokec4 in\cf6 \strokec6  xrange(index, len(nums)):\
+        \cf4 \strokec4 self\cf6 \strokec6 .dfs(nums, target-nums[i], i, path+[nums[i]], res)\
+\pard\pardeftab720\sa140\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \strokec2 Combination Sum II\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs26 \cf4 \cb5 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 combinationSum2\cf6 \strokec6 (\cf8 \strokec8 self, candidates, target\cf6 \strokec6 ):\
+    res = []\
+    candidates.sort()\
+    self.dfs(candidates, target, \cf7 \strokec7 0\cf6 \strokec6 , [], res)\
+    \cf4 \strokec4 return\cf6 \strokec6  res\
+    \
+\cf4 \strokec4 def\cf6 \strokec6  \cf7 \strokec7 dfs\cf6 \strokec6 (\cf8 \strokec8 self, candidates, target, index, path, res\cf6 \strokec6 ):\
+    \cf4 \strokec4 if\cf6 \strokec6  target < \cf7 \strokec7 0\cf6 \strokec6 :\
+        \cf4 \strokec4 return\cf6 \strokec6   \cf9 \strokec9 # backtracking\cf6 \strokec6 \
+    \cf4 \strokec4 if\cf6 \strokec6  target == \cf7 \strokec7 0\cf6 \strokec6 :\
+        res.append(path)\
+        \cf4 \strokec4 return\cf6 \strokec6   \cf9 \strokec9 # backtracking \cf6 \strokec6 \
+    \cf4 \strokec4 for\cf6 \strokec6  i \cf4 \strokec4 in\cf6 \strokec6  xrange(index, \cf8 \strokec8 len\cf6 \strokec6 (candidates)):\
+        \cf4 \strokec4 if\cf6 \strokec6  i > index \cf4 \strokec4 and\cf6 \strokec6  candidates[i] == candidates[i-\cf7 \strokec7 1\cf6 \strokec6 ]:\
+            \cf4 \strokec4 continue\cf6 \strokec6 \
+        self.dfs(candidates, target-candidates[i], i+\cf7 \strokec7 1\cf6 \strokec6 , path+[candidates[i]], res)\
+}

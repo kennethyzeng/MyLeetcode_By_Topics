@@ -1,0 +1,24 @@
+################################
+Reverse Polish Notation was designed specifically to make computing easier with the more efficient use of a stack. So we can use a stack here to store numbers until they're used, and then each operand will use the top two values of the stack.
+
+Since the order of the numbers is still important for subtraction and division, we'll have to make sure that the two numbers are processed in their original order, which is the opposite order of the stack.
+
+After each successful operation, the result should be pushed back onto the stack until it's used. After iteration is complete, the remaining value in the stack will be our answer, so we should return stack[0].
+
+Time Complexity: O(N) where N is the length of tokens
+Space Complexity: O(N) for the length of the stack, up to N / 2 + 1 values
+###############################
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        for t in tokens:
+            if t not in {"+", "-", "*", "/"}:
+                stack.append(int(t))
+            else:
+                b, a = stack.pop(), stack.pop()
+                if t == "+": stack.append(a + b)
+                elif t == "-": stack.append(a - b)
+                elif t == "*": stack.append(a * b)
+                else: stack.append(trunc(a / b))
+        return stack[0]
+

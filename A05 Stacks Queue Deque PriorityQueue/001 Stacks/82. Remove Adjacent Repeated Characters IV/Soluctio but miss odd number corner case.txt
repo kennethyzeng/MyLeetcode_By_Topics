@@ -1,0 +1,132 @@
+################################################
+1047. Remove All Adjacent Duplicates In String
+
+To solove the this particular problem, need to ask or think about the corner case: 
+is it only remove adjacent character like Case 1 or case 2?  or 
+is it remove all adjacent character like case 3?
+
+if for case 1 and 2, Method 1 is a solution; if case 3, method 2 is a solution
+Case 1:
+Input: s = "abbaca"
+Output: "ca"
+
+Case:
+Input: s = "azxxzy"
+Output: "ay"
+Examples
+
+Case 3:
+"abbbaaccz" → "aaaccz" → "ccz" → "z"
+"aabccdc" → "bccdc" → "bdc"
+
+
+Method 1: 
+	->Create a stack(Java) or list act as stack(python 
+	-> for each character(c) in string(S): if (stack is not empty and stack.peek == c) --> stack.pop()
+	   else: stack.push(c)
+	->sb.apppend(stack.pop()) --> pop the element from stack and combine them to a sting 
+	-> reverse the string 
+
+Note: for Java, you may need to call two module: Stack and StringBuilder. StringBuilder like like pthon. it has sb.append(); sb.reverse(); sb.toString(), s.lenth()
+	StringBuilder sb = new StringBuilder();
+       for list act as Stack in python, don't need to do "reverse" action. just combine them because it is list 
+		return ''.join(stack)
+
+#################
+Note: Below Solution is not perfect since if the repeated character is odd number, one character will be left and not remove 
+This fails for string input "aaaaacaaabbbacdc"
+expected answer is "cacdc", but above program returns "acabacdc"
+################################################
+class Solution:
+    def removeDuplicates(self, S: str) -> str:
+        stack = []
+        
+        for s in S:
+            if stack and stack[-1] == s:
+                stack.pop()
+            else:
+                stack.append(s)
+                
+        return "".join(stack)
+
+
+
+
+###############################
+same concpet in Java
+
+EXPLANATION:
+
+1. Create a character type Stack.
+2. For every character in the word, if stack is not empty and the stack top matches the current character, pop from the stack and continue.
+3. Else, just push the current character into the stack.
+4. Finally, pop all characters from the stack, reverse the result string and return it.
+#############################
+class Solution {
+    public String removeDuplicates(String S) {
+        //create stack
+        Stack<Character> stack = new Stack();
+        
+        //iterate thru string
+        for (char c : S.toCharArray()) {
+            //check if top of stack is equal to this character
+            if (!stack.isEmpty() && stack.peek() == c) {
+                //remove
+                stack.pop();
+            } else {
+               //add to stack
+                stack.push(c);
+            }
+        }
+        
+        //string builder for result
+        StringBuilder sb = new StringBuilder();
+        
+        //empty stack out (everything left is not an adjacent duplicate)
+        while (!stack.isEmpty()) sb.append(stack.pop());
+        
+        //result
+        return sb.reverse().toString();
+    }
+}
+
+#######################
+this one run faster, but need to figure out the logic
+#######################
+class Solution {
+    public String removeDuplicates(String s) {
+        int i = 0;
+        char[] res = s.toCharArray();
+        for (int j=0; j<res.length; j++, i++) {
+            res[i] = res[j];
+            if (i > 0 && res[i] == res[i-1]) i -= 2;
+        }
+        return new String(res, 0 , i);
+    }
+}
+
+
+#####################
+Same concept but use array
+
+####################
+public String removeDuplicates(String S) {
+        // consider this array as a stack, index 0 is the bottom of the stack
+        char[] stack = new char[S.length()]; 
+        // this is index in stack array for stack top, init as 0 because it is empty
+        int stackTop = 0;
+        
+        for(int j = 0; j < S.length(); j++){
+            // when stack is NOT empty(stackTop > 0) and first char in stack( stack[stackTop-1]) equals to new char in S(S.charAt(j))
+            // pop stack
+            if(stackTop  > 0 && stack [stackTop - 1] == S.charAt(j)){
+                stackTop--;
+            }
+            // if new char in S is not equal to top of stack, push new char into stack
+            else{
+                stack [stackTop] = S.charAt(j);
+                stackTop++;
+            }
+        }
+        // create result string from bottom of stack to top
+        return new String(stack, 0, stackTop);

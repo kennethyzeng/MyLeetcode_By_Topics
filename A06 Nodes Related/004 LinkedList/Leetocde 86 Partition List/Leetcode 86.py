@@ -1,0 +1,20 @@
+###########
+Time Complexity:
+Space Complexity:
+
+
+#############
+class Solution:
+    def partition(self, head: ListNode, x: int) -> ListNode:
+        fdum, bdum = ListNode(0), ListNode(0)
+        front, back, curr = fdum, bdum, head
+        while curr:
+            if curr.val < x:
+                front.next = curr
+                front = curr
+            else:
+                back.next = curr
+                back = curr
+            curr = curr.next
+        front.next, back.next = bdum.next, None
+        return fdum.next

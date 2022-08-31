@@ -1,0 +1,113 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red78\green106\blue120;\red255\green255\blue255;\red51\green51\blue51;
+\red151\green0\blue126;\red245\green247\blue249;\red29\green38\blue42;\red73\green17\blue135;\red20\green0\blue196;
+\red181\green0\blue19;\red12\green90\blue1;}
+{\*\expandedcolortbl;;\cssrgb\c37647\c49020\c54510;\cssrgb\c100000\c100000\c100000;\cssrgb\c25882\c25882\c25882;
+\cssrgb\c66667\c5098\c56863;\cssrgb\c96863\c97647\c98039;\cssrgb\c14902\c19608\c21961;\cssrgb\c36078\c14902\c60000;\cssrgb\c10980\c0\c81176;
+\cssrgb\c76863\c10196\c8627;\cssrgb\c0\c41569\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
+\margl1440\margr1440\vieww25100\viewh13280\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+ \cf4 \kerning1\expnd0\expndtw0 1.	\expnd0\expndtw0\kerning0
+Recursively find the node that has the same value as the key, while setting the left/right nodes equal to the returned subtree\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0\cf4 \cb3 \kerning1\expnd0\expndtw0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+Once the node is found, have to handle the below 4 cases\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls2\ilvl0\cf4 \cb3 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+node doesn't have left or right - return null\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+node only has left subtree- return the left subtree\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+node only has right subtree- return the right subtree\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+node has both left and right - find the minimum value in the right subtree, set that value to the currently found node, then recursively delete the minimum value in the right subtree\cb1 \
+##################\
+For the recursive solutions below, python version, when found the key, it found the min value from the left subtree to replace and delete the node\
+for the java version, it found the max value from the right subtree which beneath found node and replace the found node with max value in subtree. \
+please feel free to find the difference\
+##################\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs26 \cf5 \cb6 class\cf7  \cf8 Solution\cf7 :\
+    \cf5 def\cf7  \cf9 deleteNode\cf7 (\cf8 self, root, key\cf7 ):\
+        \cf10 """\
+        :type root: TreeNode\
+        :type key: int\
+        :rtype: TreeNode\
+        """\cf7 \
+        \cf5 if\cf7  \cf5 not\cf7  root:\
+            \cf5 return\cf7 \
+        \
+        \cf11 # we always want to delete the node when it is the root of a subtree,\cf7 \
+        \cf11 # so we handle left or right according to the val.\cf7 \
+        \cf11 # if the node does not exist, we will hit the very first if statement and return None.\cf7 \
+        \cf5 if\cf7  key > root.val:\
+            root.right = self.deleteNode(root.right, key)\
+            \
+        \cf5 elif\cf7  key < root.val:\
+            root.left = self.deleteNode(root.left, key)\
+        \
+        \cf11 # now the key is the root of a subtree\cf7 \
+        \cf5 else\cf7 :    ##in the case, found the node \
+            \cf11 # if the subtree does not have a left child, we just return its right child\cf7 \
+            \cf11 # to its father, and they will be connected on the higher level recursion.\cf7 \
+            \cf5 if\cf7  \cf5 not\cf7  root.left:   #case not let leg or both leg are null\
+                \cf5 return\cf7  root.right\
+            \
+            \cf11 # if it has a left child, we want to find the max val on the left subtree to \cf7 \
+            \cf11 # replace the node we want to delete.\cf7 \
+            \cf5 else\cf7 :       ##otherwise, use find max value in left leg to replace it\
+                \cf11 # try to find the max value on the left subtree\cf7 \
+                tmp = root.left\
+                \cf5 while\cf7  tmp.right:\
+                    tmp = tmp.right\
+                    \
+                \cf11 # replace\cf7 \
+                root.val = tmp.val\
+                \
+                \cf11 # since we have replaced the node we want to delete with the tmp, now we don't\cf7 \
+                \cf11 # want to keep the tmp on this tree, so we just use our function to delete it.\cf7 \
+                \cf11 # pass the val of tmp to the left subtree and repeat the whole approach.\cf7 \
+                root.left = self.deleteNode(root.left, tmp.val)\
+        \
+        \cf5 return\cf7  root\
+\
+\
+#########java recursive version\
+\
+\cf5 public\cf7  TreeNode deleteNode(TreeNode root, int key) \{\
+    \cf5 if\cf7 (root == \cf5 null\cf7 )\{\
+        \cf5 return\cf7  \cf5 null\cf7 ;\
+    \}\
+    \cf5 if\cf7 (key < root.\cf5 val\cf7 )\{\
+        root.left = deleteNode(root.left, key);\
+    \}\cf5 else\cf7  \cf5 if\cf7 (key > root.\cf5 val\cf7 )\{\
+        root.right = deleteNode(root.right, key);\
+    \}\cf5 else\cf7 \{\
+        \cf5 if\cf7 (root.left == \cf5 null\cf7 )\{  case 1: this also, include both leg are null\
+            \cf5 return\cf7  root.right;\
+        \}\cf5 else\cf7  \cf5 if\cf7 (root.right == \cf5 null\cf7 )\{  case 2: \
+            \cf5 return\cf7  root.left;\
+        \}\
+       // case 3: have two legs. in below node, find the min.val at right subtree to replace found node\'92s value. of course, delete the old node  \
+        TreeNode minNode = findMin(root.right);\
+        root.\cf5 val\cf7  = minNode.\cf5 val\cf7 ;\
+        root.right = deleteNode(root.right, root.\cf5 val\cf7 );\
+    \}\
+    \cf5 return\cf7  root;\
+\}\
+\
+\cf5 private\cf7  TreeNode findMin(TreeNode node)\{\
+    \cf5 while\cf7 (node.left != \cf5 null\cf7 )\{\
+        node = node.left;\
+    \}\
+    \cf5 return\cf7  node;\
+\}\
+}

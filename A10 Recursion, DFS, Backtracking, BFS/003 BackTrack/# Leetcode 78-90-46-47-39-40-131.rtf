@@ -1,0 +1,204 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red78\green106\blue120;\red255\green255\blue255;\red51\green51\blue51;
+\red78\green106\blue120;\red151\green0\blue126;\red245\green247\blue249;\red29\green38\blue42;\red73\green17\blue135;
+\red20\green0\blue196;\red12\green90\blue1;\red231\green235\blue237;}
+{\*\expandedcolortbl;;\cssrgb\c37647\c49020\c54510;\cssrgb\c100000\c100000\c100000;\cssrgb\c25882\c25882\c25882;
+\cssrgb\c37647\c49020\c54510;\cssrgb\c66667\c5098\c56863;\cssrgb\c96863\c97647\c98039;\cssrgb\c14902\c19608\c21961;\cssrgb\c36078\c14902\c60000;
+\cssrgb\c10980\c0\c81176;\cssrgb\c0\c41569\c0;\cssrgb\c92549\c93725\c94510;}
+\margl1440\margr1440\vieww25100\viewh13280\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+/*\
+Leetcode 78-90-46-47-39-40-131\
+*/\
+\pard\pardeftab720\sa280\partightenfactor0
+\cf4 \outl0\strokewidth0 \strokec4 This structure might apply to many other backtracking questions, but here I am just going to demonstrate Subsets, Permutations, and Combination Sum.\
+\
+Subsets :\'a0{\field{\*\fldinst{HYPERLINK "https://leetcode.com/problems/subsets/"}}{\fldrslt \cf5 \strokec5 https://leetcode.com/problems/subsets/}}\
+\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs26 \cf6 \cb7 \strokec6 public\cf8 \strokec8  List<List<Integer>> subsets(\cf9 \strokec9 int\cf8 \strokec8 [] nums) \{\
+    List<List<Integer>> list = \cf6 \strokec6 new\cf8 \strokec8  ArrayList<>();\
+    Arrays.sort(nums);\
+    backtrack(list, \cf6 \strokec6 new\cf8 \strokec8  ArrayList<>(), nums, \cf10 \strokec10 0\cf8 \strokec8 );\
+    \cf6 \strokec6 return\cf8 \strokec8  list;\
+\}\
+\
+\cf6 \strokec6 private\cf8 \strokec8  \cf6 \strokec6 void\cf8 \strokec8  \cf10 \strokec10 backtrack\cf8 \strokec8 (\cf9 \strokec9 List<List<Integer>> list , List<Integer> tempList, int [] nums, int start\cf8 \strokec8 )\{\
+    list.\cf6 \strokec6 add\cf8 \strokec8 (\cf6 \strokec6 new\cf8 \strokec8  ArrayList<>(tempList));\
+    \cf6 \strokec6 for\cf8 \strokec8 (\cf9 \strokec9 int\cf8 \strokec8  i = start; i < nums.length; i++)\{\
+        tempList.\cf6 \strokec6 add\cf8 \strokec8 (nums[i]);\
+        backtrack(list, tempList, nums, i + \cf10 \strokec10 1\cf8 \strokec8 );\
+        tempList.\cf6 \strokec6 remove\cf8 \strokec8 (tempList.size() - \cf10 \strokec10 1\cf8 \strokec8 );\
+    \}\
+\}\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf4 \cb3 \strokec4 \
+Subsets II (contains duplicates) :\'a0{\field{\*\fldinst{HYPERLINK "https://leetcode.com/problems/subsets-ii/"}}{\fldrslt \cf5 \strokec5 https://leetcode.com/problems/subsets-ii/}}\
+\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs26 \cf6 \cb7 \strokec6 public\cf8 \strokec8  List<List<Integer>> subsetsWithDup(\cf9 \strokec9 int\cf8 \strokec8 [] nums) \{\
+    List<List<Integer>> list = \cf6 \strokec6 new\cf8 \strokec8  ArrayList<>();\
+    Arrays.sort(nums);\
+    backtrack(list, \cf6 \strokec6 new\cf8 \strokec8  ArrayList<>(), nums, \cf10 \strokec10 0\cf8 \strokec8 );\
+    \cf6 \strokec6 return\cf8 \strokec8  list;\
+\}\
+\
+\cf6 \strokec6 private\cf8 \strokec8  \cf6 \strokec6 void\cf8 \strokec8  \cf10 \strokec10 backtrack\cf8 \strokec8 (\cf9 \strokec9 List<List<Integer>> list, List<Integer> tempList, int [] nums, int start\cf8 \strokec8 )\{\
+    list.\cf6 \strokec6 add\cf8 \strokec8 (\cf6 \strokec6 new\cf8 \strokec8  ArrayList<>(tempList));\
+    \cf6 \strokec6 for\cf8 \strokec8 (\cf9 \strokec9 int\cf8 \strokec8  i = start; i < nums.length; i++)\{\
+        \cf6 \strokec6 if\cf8 \strokec8 (i > start && nums[i] == nums[i\cf10 \strokec10 -1\cf8 \strokec8 ]) \cf6 \strokec6 continue\cf8 \strokec8 ; \cf11 \strokec11 // skip duplicates\cf8 \strokec8 \
+        tempList.\cf6 \strokec6 add\cf8 \strokec8 (nums[i]);\
+        backtrack(list, tempList, nums, i + \cf10 \strokec10 1\cf8 \strokec8 );\
+        tempList.\cf6 \strokec6 remove\cf8 \strokec8 (tempList.size() - \cf10 \strokec10 1\cf8 \strokec8 );\
+    \}\
+\} \
+\pard\pardeftab720\sa140\partightenfactor0
+
+\f0\fs28 \cf4 \cb12 \strokec4 \
+\pard\pardeftab720\sa280\partightenfactor0
+\cf4 \cb3 \
+Permutations :\'a0{\field{\*\fldinst{HYPERLINK "https://leetcode.com/problems/permutations/"}}{\fldrslt \cf5 \strokec5 https://leetcode.com/problems/permutations/}}\
+\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs26 \cf6 \cb7 \strokec6 public\cf8 \strokec8  List<List<Integer>> permute(\cf9 \strokec9 int\cf8 \strokec8 [] nums) \{\
+   List<List<Integer>> list = \cf6 \strokec6 new\cf8 \strokec8  ArrayList<>();\
+   \cf11 \strokec11 // Arrays.sort(nums); // not necessary\cf8 \strokec8 \
+   backtrack(list, \cf6 \strokec6 new\cf8 \strokec8  ArrayList<>(), nums);\
+   \cf6 \strokec6 return\cf8 \strokec8  list;\
+\}\
+\
+\cf6 \strokec6 private\cf8 \strokec8  \cf6 \strokec6 void\cf8 \strokec8  \cf10 \strokec10 backtrack\cf8 \strokec8 (\cf9 \strokec9 List<List<Integer>> list, List<Integer> tempList, int [] nums\cf8 \strokec8 )\{\
+   \cf6 \strokec6 if\cf8 \strokec8 (tempList.size() == nums.length)\{\
+      list.\cf6 \strokec6 add\cf8 \strokec8 (\cf6 \strokec6 new\cf8 \strokec8  ArrayList<>(tempList));\
+   \} \cf6 \strokec6 else\cf8 \strokec8 \{\
+      \cf6 \strokec6 for\cf8 \strokec8 (\cf9 \strokec9 int\cf8 \strokec8  i = \cf10 \strokec10 0\cf8 \strokec8 ; i < nums.length; i++)\{ \
+         \cf6 \strokec6 if\cf8 \strokec8 (tempList.contains(nums[i])) \cf6 \strokec6 continue\cf8 \strokec8 ; \cf11 \strokec11 // element already exists, skip\cf8 \strokec8 \
+         tempList.\cf6 \strokec6 add\cf8 \strokec8 (nums[i]);\
+         backtrack(list, tempList, nums);\
+         tempList.\cf6 \strokec6 remove\cf8 \strokec8 (tempList.size() - \cf10 \strokec10 1\cf8 \strokec8 );\
+      \}\
+   \}\
+\} \
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf4 \cb3 \strokec4 \
+Permutations II (contains duplicates) :\'a0{\field{\*\fldinst{HYPERLINK "https://leetcode.com/problems/permutations-ii/"}}{\fldrslt \cf5 \strokec5 https://leetcode.com/problems/permutations-ii/}}\
+\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs26 \cf6 \cb7 \strokec6 public\cf8 \strokec8  \cf6 \strokec6 List\cf8 \strokec8 <\cf6 \strokec6 List\cf8 \strokec8 <\cf6 \strokec6 Integer\cf8 \strokec8 >> permuteUnique(\cf6 \strokec6 int\cf8 \strokec8 [] nums) \{\
+    \cf6 \strokec6 List\cf8 \strokec8 <\cf6 \strokec6 List\cf8 \strokec8 <\cf6 \strokec6 Integer\cf8 \strokec8 >> \cf6 \strokec6 list\cf8 \strokec8  = \cf6 \strokec6 new\cf8 \strokec8  ArrayList<>();\
+    Arrays.sort(nums);\
+    backtrack(\cf6 \strokec6 list\cf8 \strokec8 , \cf6 \strokec6 new\cf8 \strokec8  ArrayList<>(), nums, \cf6 \strokec6 new\cf8 \strokec8  \cf6 \strokec6 boolean\cf8 \strokec8 [nums.length]);\
+    \cf6 \strokec6 return\cf8 \strokec8  \cf6 \strokec6 list\cf8 \strokec8 ;\
+\}\
+\
+\cf6 \strokec6 private\cf8 \strokec8  \cf6 \strokec6 void\cf8 \strokec8  backtrack(\cf6 \strokec6 List\cf8 \strokec8 <\cf6 \strokec6 List\cf8 \strokec8 <\cf6 \strokec6 Integer\cf8 \strokec8 >> \cf6 \strokec6 list\cf8 \strokec8 , \cf6 \strokec6 List\cf8 \strokec8 <\cf6 \strokec6 Integer\cf8 \strokec8 > tempList, \cf6 \strokec6 int\cf8 \strokec8  [] nums, \cf6 \strokec6 boolean\cf8 \strokec8  [] used)\{\
+    \cf6 \strokec6 if\cf8 \strokec8 (tempList.size() == nums.length)\{\
+        \cf6 \strokec6 list\cf8 \strokec8 .add(\cf6 \strokec6 new\cf8 \strokec8  ArrayList<>(tempList));\
+    \} \cf6 \strokec6 else\cf8 \strokec8 \{\
+        \cf6 \strokec6 for\cf8 \strokec8 (\cf6 \strokec6 int\cf8 \strokec8  i = \cf10 \strokec10 0\cf8 \strokec8 ; i < nums.length; i++)\{\
+            \cf6 \strokec6 if\cf8 \strokec8 (used[i] || i > \cf10 \strokec10 0\cf8 \strokec8  && nums[i] == nums[i\cf10 \strokec10 -1\cf8 \strokec8 ] && !used[i - \cf10 \strokec10 1\cf8 \strokec8 ]) \cf6 \strokec6 continue\cf8 \strokec8 ;\
+            used[i] = \cf6 \strokec6 true\cf8 \strokec8 ; \
+            tempList.add(nums[i]);\
+            backtrack(\cf6 \strokec6 list\cf8 \strokec8 , tempList, nums, used);\
+            used[i] = \cf6 \strokec6 false\cf8 \strokec8 ; \
+            tempList.remove(tempList.size() - \cf10 \strokec10 1\cf8 \strokec8 );\
+        \}\
+    \}\
+\}\
+\pard\pardeftab720\sa140\partightenfactor0
+
+\f0\fs28 \cf4 \cb12 \strokec4 \
+\pard\pardeftab720\sa280\partightenfactor0
+\cf4 \cb3 \
+Combination Sum :\'a0{\field{\*\fldinst{HYPERLINK "https://leetcode.com/problems/combination-sum/"}}{\fldrslt \cf5 \strokec5 https://leetcode.com/problems/combination-sum/}}\
+\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs26 \cf6 \cb7 \strokec6 public\cf8 \strokec8  List<List<Integer>> combinationSum(\cf9 \strokec9 int\cf8 \strokec8 [] nums, \cf9 \strokec9 int\cf8 \strokec8  target) \{\
+    List<List<Integer>> list = \cf6 \strokec6 new\cf8 \strokec8  ArrayList<>();\
+    Arrays.sort(nums);\
+    backtrack(list, \cf6 \strokec6 new\cf8 \strokec8  ArrayList<>(), nums, target, \cf10 \strokec10 0\cf8 \strokec8 );\
+    \cf6 \strokec6 return\cf8 \strokec8  list;\
+\}\
+\
+\cf6 \strokec6 private\cf8 \strokec8  \cf6 \strokec6 void\cf8 \strokec8  \cf10 \strokec10 backtrack\cf8 \strokec8 (\cf9 \strokec9 List<List<Integer>> list, List<Integer> tempList, int [] nums, int remain, int start\cf8 \strokec8 )\{\
+    \cf6 \strokec6 if\cf8 \strokec8 (remain < \cf10 \strokec10 0\cf8 \strokec8 ) \cf6 \strokec6 return\cf8 \strokec8 ;\
+    \cf6 \strokec6 else\cf8 \strokec8  \cf6 \strokec6 if\cf8 \strokec8 (remain == \cf10 \strokec10 0\cf8 \strokec8 ) list.\cf6 \strokec6 add\cf8 \strokec8 (\cf6 \strokec6 new\cf8 \strokec8  ArrayList<>(tempList));\
+    \cf6 \strokec6 else\cf8 \strokec8 \{ \
+        \cf6 \strokec6 for\cf8 \strokec8 (\cf9 \strokec9 int\cf8 \strokec8  i = start; i < nums.length; i++)\{\
+            tempList.\cf6 \strokec6 add\cf8 \strokec8 (nums[i]);\
+            backtrack(list, tempList, nums, remain - nums[i], i); \cf11 \strokec11 // not i + 1 because we can reuse same elements\cf8 \strokec8 \
+            tempList.\cf6 \strokec6 remove\cf8 \strokec8 (tempList.size() - \cf10 \strokec10 1\cf8 \strokec8 );\
+        \}\
+    \}\
+\}\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf4 \cb3 \strokec4 \
+Combination Sum II (can't reuse same element) :\'a0{\field{\*\fldinst{HYPERLINK "https://leetcode.com/problems/combination-sum-ii/"}}{\fldrslt \cf5 \strokec5 https://leetcode.com/problems/combination-sum-ii/}}\
+\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs26 \cf6 \cb7 \strokec6 public\cf8 \strokec8  List<List<Integer>> combinationSum2(\cf9 \strokec9 int\cf8 \strokec8 [] nums, \cf9 \strokec9 int\cf8 \strokec8  target) \{\
+    List<List<Integer>> list = \cf6 \strokec6 new\cf8 \strokec8  ArrayList<>();\
+    Arrays.sort(nums);\
+    backtrack(list, \cf6 \strokec6 new\cf8 \strokec8  ArrayList<>(), nums, target, \cf10 \strokec10 0\cf8 \strokec8 );\
+    \cf6 \strokec6 return\cf8 \strokec8  list;\
+    \
+\}\
+\
+\cf6 \strokec6 private\cf8 \strokec8  \cf6 \strokec6 void\cf8 \strokec8  \cf10 \strokec10 backtrack\cf8 \strokec8 (\cf9 \strokec9 List<List<Integer>> list, List<Integer> tempList, int [] nums, int remain, int start\cf8 \strokec8 )\{\
+    \cf6 \strokec6 if\cf8 \strokec8 (remain < \cf10 \strokec10 0\cf8 \strokec8 ) \cf6 \strokec6 return\cf8 \strokec8 ;\
+    \cf6 \strokec6 else\cf8 \strokec8  \cf6 \strokec6 if\cf8 \strokec8 (remain == \cf10 \strokec10 0\cf8 \strokec8 ) list.\cf6 \strokec6 add\cf8 \strokec8 (\cf6 \strokec6 new\cf8 \strokec8  ArrayList<>(tempList));\
+    \cf6 \strokec6 else\cf8 \strokec8 \{\
+        \cf6 \strokec6 for\cf8 \strokec8 (\cf9 \strokec9 int\cf8 \strokec8  i = start; i < nums.length; i++)\{\
+            \cf6 \strokec6 if\cf8 \strokec8 (i > start && nums[i] == nums[i\cf10 \strokec10 -1\cf8 \strokec8 ]) \cf6 \strokec6 continue\cf8 \strokec8 ; \cf11 \strokec11 // skip duplicates\cf8 \strokec8 \
+            tempList.\cf6 \strokec6 add\cf8 \strokec8 (nums[i]);\
+            backtrack(list, tempList, nums, remain - nums[i], i + \cf10 \strokec10 1\cf8 \strokec8 );\
+            tempList.\cf6 \strokec6 remove\cf8 \strokec8 (tempList.size() - \cf10 \strokec10 1\cf8 \strokec8 ); \
+        \}\
+    \}\
+\} \
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\fs28 \cf4 \cb3 \strokec4 \
+Palindrome Partitioning :\'a0{\field{\*\fldinst{HYPERLINK "https://leetcode.com/problems/palindrome-partitioning/"}}{\fldrslt \cf5 \strokec5 https://leetcode.com/problems/palindrome-partitioning/}}\
+\
+\pard\pardeftab720\sl400\partightenfactor0
+
+\f1\fs26 \cf8 \cb7 \strokec8 public List<List<\cf9 \strokec9 String\cf8 \strokec8 >> \cf10 \strokec10 partition\cf8 \strokec8 (\cf9 \strokec9 String s\cf8 \strokec8 ) \{\
+   List<List<\cf9 \strokec9 String\cf8 \strokec8 >> list = \cf6 \strokec6 new\cf8 \strokec8  ArrayList<>();\
+   backtrack(list, \cf6 \strokec6 new\cf8 \strokec8  ArrayList<>(), s, \cf10 \strokec10 0\cf8 \strokec8 );\
+   \cf6 \strokec6 return\cf8 \strokec8  list;\
+\}\
+\
+public \cf6 \strokec6 void\cf8 \strokec8  \cf10 \strokec10 backtrack\cf8 \strokec8 (\cf9 \strokec9 List<List<String>> list, List<String> tempList, String s, int start\cf8 \strokec8 )\{\
+   \cf6 \strokec6 if\cf8 \strokec8 (start == s.length())\
+      list.add(\cf6 \strokec6 new\cf8 \strokec8  ArrayList<>(tempList));\
+   \cf6 \strokec6 else\cf8 \strokec8 \{\
+      \cf6 \strokec6 for\cf8 \strokec8 (int i = start; i < s.length(); i++)\{\
+         \cf6 \strokec6 if\cf8 \strokec8 (isPalindrome(s, start, i))\{\
+            tempList.add(s.substring(start, i + \cf10 \strokec10 1\cf8 \strokec8 ));\
+            backtrack(list, tempList, s, i + \cf10 \strokec10 1\cf8 \strokec8 );\
+            tempList.remove(tempList.size() - \cf10 \strokec10 1\cf8 \strokec8 );\
+         \}\
+      \}\
+   \}\
+\}\
+\
+public boolean \cf10 \strokec10 isPalindrome\cf8 \strokec8 (\cf9 \strokec9 String s, int low, int high\cf8 \strokec8 )\{\
+   \cf6 \strokec6 while\cf8 \strokec8 (low < high)\
+      \cf6 \strokec6 if\cf8 \strokec8 (s.charAt(low++) != s.charAt(high--)) \cf6 \strokec6 return\cf8 \strokec8  \cf6 \strokec6 false\cf8 \strokec8 ;\
+   \cf6 \strokec6 return\cf8 \strokec8  \cf6 \strokec6 true\cf8 \strokec8 ;\
+\} \
+}

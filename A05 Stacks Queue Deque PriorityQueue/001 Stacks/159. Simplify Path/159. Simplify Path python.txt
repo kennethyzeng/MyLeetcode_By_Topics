@@ -1,0 +1,58 @@
+######################
+def simplifyPath(self, path):
+    stack = []
+    for token in path.split('/'):
+        if token in ('', '.'):
+            pass
+        elif token == '..':
+            if stack: stack.pop()
+        else:
+            stack.append(token)
+    return '/' + '/'.join(stack)
+
+
+
+
+
+
+#####################
+class Solution(object):
+    def simplifyPath(self, path):
+        parts = path.split("/")
+        stack = []
+        for p in parts:
+            if p in ['', '.']:
+                continue
+            elif p == '..':
+                if stack:
+                    stack.pop()
+            else:
+                stack.append(p)
+        return '/' + '/'.join(stack)
+
+
+#########################################
+O(n) - every character in path
+Space: O(n) - might just have a long directory name piling on to the stack
+Algorithm: Keep a stack tracking the directory level, skip over the . and only append directories which are not the . or ..
+When an .. is encountered pop from the stack (go up a level in the hierarchy) only if you have something in the stack, otherwise do nothing (empty stack encountering ..).
+############################################
+def simplifyPath(self, path):
+        """
+        :type path: str
+        :rtype: str
+        """        
+        # Splitting is O(n*m) - where m is the length of the character to split, here this is O(n)
+        plist = path.split('/')
+        stack = []
+        for directory in plist:
+            if directory == "." or not directory:
+                continue
+            # Need this condition nested for case of /../a
+            elif directory == "..":
+                if stack:
+                    stack.pop()
+            else:
+                stack.append(directory)
+                
+        return "/" + "/".join(stack)
