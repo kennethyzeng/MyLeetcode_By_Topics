@@ -30,7 +30,7 @@ class Queue:
 
     #worst-time complexity for enqueue is O(1)
     def enqueue(self, data): 
-        new_node=Node(data, None, None)
+        new_node=Node(data, None, None)   ##
         if self.head==None:
             self.head= new_node
             self.tail=self.head 
@@ -42,15 +42,20 @@ class Queue:
 
     def dequeue(self):  #concept of FIFO
         if self.count ==1:
+            content=self.head.data  #add from original code
             self.next=None 
             self.head = None
             self.count -= 1
+            return content # add from original code
         elif self.count > 1:    #FIFO 
+            content=self.head.data
             self.head= self.head.next 
             self.head.pre = None
             self.count -= 1
+            return content
         elif self.count < 1: 
-            print("Queue is empty")
+           # print("Queue is empty")
+            return "Queue is empty"
         #self.cout -= 1
 
     def size(self):
@@ -62,6 +67,7 @@ q.enqueue(4)
 q.enqueue("Dog")
 q.enqueue("True")
 print(q.count)
-q.dequeue()
+data1=q.dequeue()  
+print(data1)   #4
 print(q.size())
     
