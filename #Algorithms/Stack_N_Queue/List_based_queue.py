@@ -5,7 +5,7 @@ Queue implemented by list.
     -use pop(0) for deueue 
     -set maximum size, need two pointer
     -size of the list
-The the source code isn't right; it use append
+
 
 Adv and disAdv
 -enqueue and dequeue's time complexity should be O(1)
@@ -22,8 +22,8 @@ class ListQueue:
         if self.size ==self.rare: 
             print("\nThe queue is full")
         else: 
-            #self.items.append(data)  shouldn't use append 
-            self.items.insert(0,data)
+            self.items.append(data)  
+            #self.items.insert(0,data)   #is use insert(), it is stack function
             self.rare +=1    
 
     def dequeue(self):

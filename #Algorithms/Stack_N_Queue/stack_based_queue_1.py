@@ -17,8 +17,8 @@ class StackQueue:
         self.size = 0; 
 
     def enqueue(self, data):
-        #self.stack1.append(data)
-        self.stack1.insert(0, data)
+        self.stack1.append(data)
+        #self.stack1.insert(0, data)
         self.size +=1
 
     def dequeue(self):
@@ -40,6 +40,8 @@ class StackQueue:
        return self.size
 
 #test 
+#[5, 10, 7]    
+#sart     end
 queue = StackQueue()
 queue.enqueue(5)
 queue.enqueue(10)
