@@ -4,6 +4,7 @@ Circular linked list:
     -need self.head and self.point 
     -two method: append(), and delete()
     -for the delete(), need one while loop with two pointer: prev and current
+    
 """
 class Node: 
     """A Circular linked Node"""
