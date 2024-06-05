@@ -8,18 +8,24 @@ def countdown(x):
         return
     else:
         print(x, "...")
-        countdown(x-1)
-
+    print("hlloe")
+    countdown(x-1)
+    print("foo")
 
 countdown(5)
 
 
 """
 5 ...
+hlloe
 4 ...
+hlloe
 3 ...
+hlloe
 2 ...
+hlloe
 1 ...
+hlloe
 Done!
 foo
 foo
