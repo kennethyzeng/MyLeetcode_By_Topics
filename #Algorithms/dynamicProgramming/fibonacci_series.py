@@ -3,6 +3,11 @@
 func(0)=1
 func(1)=1
 func(n)=func(n-1) + func(n-2) for n > 1
+
+Advance: recursive function     recursion tree 
+disadantage:  have overlapping at certain function, can memoroizting to improve performance
+
+O()
 """
 def fib(n):
     if n <=1: 
