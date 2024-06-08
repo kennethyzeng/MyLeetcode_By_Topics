@@ -1,5 +1,9 @@
 """
 memorization technique
+top-down with memorization (use this one )
+
+looking for example of bottom-up approach
+
 """
 def dyna_fib(n):
     if n ==0:

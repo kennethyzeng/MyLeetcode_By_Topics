@@ -1,9 +1,5 @@
 """
-stack built by singly linked list 
-    -variable top is to locate the item on the top of stack, which is always first node 
-
-need to ask intervier the size of stack..is the data big or small or unknown
-you can decide to choose to build with array or linkedlist 
+This stack is used to be called from other module
 """
 class Node:    
     def __init__(self, data=None):
@@ -36,30 +32,8 @@ class LinkedListStack:
         else:  #case 3: empty 
             print("Stack is empty")
 
-
     def peek(self):
         if self.top: 
             return self.top.data 
         else: 
             print("It is empty stack")
-
-
-#cases validation
-words=LinkedListStack()
-words.push("egg")
-words.push("ham")
-words.push("spam")
-
-current=words.top 
-while current: 
-    print(current.data)
-    current=current.next
-print("#"*16 + "\n")
-words.pop()
-
-current=words.top 
-while current: 
-    print(current.data)
-    current=current.next 
-
-words.peek()

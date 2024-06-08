@@ -8,6 +8,8 @@ Advance: recursive function     recursion tree
 disadantage:  have overlapping at certain function, can memoroizting to improve performance
 
 O()
+
+top-down approach
 """
 def fib(n):
     if n <=1: 
